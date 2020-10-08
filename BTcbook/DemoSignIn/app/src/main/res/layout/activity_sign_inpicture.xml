@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#aeaeae"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/title_sign"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="再次确认图形密码"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="#000000"
+        />
+
+    <com.andrognito.patternlockview.PatternLockView
+        android:id="@+id/pattern_signin"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginStart="25dp"
+        app:dotCount="3"
+        app:dotNormalSize="12dp"
+        app:dotSelectedSize="24dp"
+        app:pathWidth="4dp"
+        app:aspectRatioEnabled="true"
+        app:aspectRatio="square"
+        app:normalStateColor="#ffffff"
+        app:correctStateColor="#FFEB3B"
+        app:wrongStateColor="#ff6600"
+        app:dotAnimationDuration="200"
+        app:pathEndAnimationDuration="100"
+        />
+
+</RelativeLayout>
