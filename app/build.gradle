@@ -31,4 +31,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.andrognito.patternlockview:patternlockview:1.0.0'
     implementation 'io.paperdb:paperdb:2.7.1'
+    compile 'com.github.traex.expandablelayout:library:1.2.2'
 }

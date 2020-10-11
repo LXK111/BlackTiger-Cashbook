@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <include layout="@layout/title_bar"></include><!--引入标题栏-->
+<!--用户名-->
+    <Button
+        android:id="@+id/btn_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:textSize="40sp"
+        android:paddingLeft="10dp"
+        android:textAllCaps="false"
+        android:drawableLeft="@drawable/user"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        >
+    <!--设置-->
+    <Button
+        android:id="@+id/btn_setting"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        android:text="设置"
+        android:textSize="20sp"
+        android:gravity="left"
+        android:paddingLeft="10dp"
+        android:drawableLeft="@drawable/icon_setting"
+        android:drawablePadding="5dp"
+        />
+    <!--修改密码-->
+    <Button
+        android:id="@+id/btn_change_text_cipher"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        android:text="修改文本密码"
+        android:textSize="20sp"
+        android:gravity="left"
+        android:paddingLeft="10dp"
+        android:drawableLeft="@drawable/icon_changecipher"
+        android:drawablePadding="5dp"
+        />
+
+    <Button
+        android:id="@+id/btn_change_pic_cipher"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        android:text="修改图形密码"
+        android:textSize="20sp"
+        android:gravity="left"
+        android:paddingLeft="10dp"
+        android:drawableLeft="@drawable/icon_pic_cipher"
+        android:drawablePadding="5dp"
+        />
+    <!--关于我们-->
+    <Button
+        android:id="@+id/btn_about_developer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        android:text="关于我们"
+        android:textSize="20sp"
+        android:gravity="left"
+        android:paddingLeft="10dp"
+        android:drawableLeft="@drawable/icon_aboutus"
+        android:drawablePadding="5dp"
+        />
+    <!--帮助-->
+    <Button
+        android:id="@+id/btn_help"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        android:text="帮助"
+        android:textSize="20sp"
+        android:gravity="left"
+        android:paddingLeft="10dp"
+        android:drawableLeft="@drawable/icon_help"
+        android:drawablePadding="5dp"
+        />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
