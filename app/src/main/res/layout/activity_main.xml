@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <!--财神图，作为封面，用户点击后进入下一页-->
+    <ImageView
+        android:id="@+id/iv_blacktiger"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/blacktiger"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".SetCipherfornewActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/logo"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        />
+    <TextView
+        android:id="@+id/tv_welcomeuser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="欢迎使用黑虎记账"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30sp"
+        android:textColor="#707070"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_message1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请设置用户名及密码"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20sp"
+        android:textColor="#707070"
+        android:layout_marginTop="10dp"
+        />
+    <EditText
+        android:id="@+id/et_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="       请输入用户名       "
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        />
+    <EditText
+        android:id="@+id/et_psw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="       请输入密码       "
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"
+        />
+    <EditText
+        android:id="@+id/et_pswagain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="       请再次输入密码       "
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"
+        />
+    <TextView
+        android:id="@+id/tv_makesure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="确认"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30sp"
+        android:layout_marginTop="10dp" />
+
+
+</LinearLayout>

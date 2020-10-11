@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_body"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="#FECE01"
+    android:orientation="vertical"
+    tools:context=".LogoActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/logo"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="黑"
+        android:textSize="40sp"
+        android:layout_gravity="center" />
+    <TextView
+        android:id="@+id/tv_title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="虎"
+        android:textSize="40sp"
+        android:layout_gravity="center" />
+    <TextView
+        android:id="@+id/tv_title3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="记"
+        android:textSize="40sp"
+        android:layout_gravity="center" />
+    <TextView
+        android:id="@+id/tv_title4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="账"
+        android:textSize="40sp"
+        android:layout_gravity="center" />
+
+
+</LinearLayout>

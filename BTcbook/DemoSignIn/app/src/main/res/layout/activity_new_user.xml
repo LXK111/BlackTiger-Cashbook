@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="欢迎使用"
+        android:textSize="40dp"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="黑虎记账"
+        android:textSize="50dp"
+        android:gravity="center"
+        android:layout_below="@+id/tv_1"
+        />
+
+    <Button
+        android:id="@+id/btn_1"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/selector_press"
+        android:text="设置密码"
+        />
+
+    <Button
+        android:id="@+id/btn_2"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/selector_press"
+        android:text="直接进入"
+        android:layout_toRightOf="@id/btn_1"
+        android:layout_marginLeft="55dp"
+        />
+
+
+</RelativeLayout>
