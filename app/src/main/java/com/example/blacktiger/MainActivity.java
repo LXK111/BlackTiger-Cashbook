@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //若图形密码非空，表示是老用户
                 if(save_pattern != null && !save_pattern.equals("null")){
-                    Intent intent = new Intent(MainActivity.this,LoginTextActivity.class);
+                    Intent intent = new Intent(MainActivity.this,LogoActivity.class);
                     startActivity(intent);
 
                 }
