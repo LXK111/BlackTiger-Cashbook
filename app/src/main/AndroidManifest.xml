@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".User_fragment.UserActivity"></activity>
         <activity android:name=".LoginPicActivity" />
         <activity android:name=".LoginText2Activity" />
         <activity android:name=".LoginTextActivity" />
@@ -20,7 +20,7 @@
         <activity android:name=".SetPicCipherAgainActivity" />
         <activity android:name=".SetPicCipherfornewActivity" />
         <activity android:name=".SetCipherfornewActivity" />
-        <activity android:name=".User_fragment.UserActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

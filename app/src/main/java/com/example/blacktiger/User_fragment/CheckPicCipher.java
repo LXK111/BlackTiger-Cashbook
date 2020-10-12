@@ -60,6 +60,9 @@ public class CheckPicCipher extends Fragment {
                 if(PatternLockUtils.patternToString(patternLockView,pattern).equalsIgnoreCase(save_pattern)){//检测密码是否匹配
                     patternLockView.setViewMode(PatternLockView.PatternViewMode.CORRECT);
                     Toast.makeText(getActivity(),"设置完成",Toast.LENGTH_SHORT).show();
+                    if (initialScreen == null){
+                        initialScreen = new InitialScreen();
+                    }
                     //跳转回主页
                     Fragment fragment = getFragmentManager().findFragmentByTag("checkpiccipher");
                     getFragmentManager().beginTransaction().replace(R.id.fl_user_interface,initialScreen,"initial").addToBackStack(null).commitAllowingStateLoss();
