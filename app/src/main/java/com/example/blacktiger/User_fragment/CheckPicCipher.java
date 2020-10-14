@@ -69,7 +69,7 @@ public class CheckPicCipher extends Fragment {
                 }
                 else{
                     patternLockView.setViewMode(PatternLockView.PatternViewMode.WRONG);
-                    Toast.makeText(getActivity(),"两次输入不一致",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"两次输入不一致，请仔细查看之前绘制内容",Toast.LENGTH_SHORT).show();
                     Paper.book().delete(save_pattern_key);
                     //销毁当前fragment,跳转回上一级设置密码
                     getActivity().onBackPressed();
