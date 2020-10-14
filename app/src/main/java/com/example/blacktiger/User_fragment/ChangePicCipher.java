@@ -16,8 +16,6 @@ import com.andrognito.patternlockview.PatternLockView;
 import com.andrognito.patternlockview.listener.PatternLockViewListener;
 import com.andrognito.patternlockview.utils.PatternLockUtils;
 import com.example.blacktiger.R;
-import com.example.blacktiger.SetPicCipherAgainActivity;
-import com.example.blacktiger.SetPicCipherfornewActivity;
 
 import java.util.List;
 
@@ -34,7 +32,7 @@ public class ChangePicCipher extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_user_change_text_cipher,container,false);
+        View view = inflater.inflate(R.layout.fragment_user_change_pic_cipher,container,false);
         Log.d("change_pic_cipher","--onCreateView--");
         return view;
     }
@@ -42,10 +40,11 @@ public class ChangePicCipher extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         //初始化paper存储
         Paper.init(getActivity());
         final String save_pattern = Paper.book().read(save_pattern_key);
-        patternLockView.findViewById(R.id.pattern_lock_view);
+        patternLockView = view.findViewById(R.id.pattern_lock_view);
         patternLockView.addPatternLockListener(new PatternLockViewListener() {
             @Override
             public void onStarted() {
@@ -75,11 +74,15 @@ public class ChangePicCipher extends Fragment {
                 Paper.book().write(save_pattern_key,final_pattern);
                 Toast.makeText(getActivity(),"确认成功",Toast.LENGTH_SHORT).show();
                 Fragment fragment = getFragmentManager().findFragmentByTag("piccipher");
-                if (fragment == null) {
+                if (checkPicCipher == null){
+                    checkPicCipher = new CheckPicCipher();
+                }
+                //当前fragment不为空，则隐藏起来添加新的确认密码的fragment
+                if (fragment != null) {
                     getFragmentManager().beginTransaction().hide(fragment).add(R.id.fl_user_interface,checkPicCipher,"checkpiccipher").addToBackStack(null).commitAllowingStateLoss();
                 }
                 else {
-                    getFragmentManager().beginTransaction().hide(fragment).replace(R.id.fl_user_interface,checkPicCipher,"checkpiccipher").addToBackStack(null).commitAllowingStateLoss();
+                    getFragmentManager().beginTransaction().replace(R.id.fl_user_interface,checkPicCipher,"checkpiccipher").addToBackStack(null).commitAllowingStateLoss();
                 }
             }
         });
