@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+    <RelativeLayout
+        android:id="@+id/ly_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/colorOrange">
+        <TextView
+            android:id="@+id/txt_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:textColor="@color/colorBlack"
+            android:text="黑虎记账"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@color/colorGrayline"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ly_top_num"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@id/ly_top_bar"
+        android:orientation="horizontal"
+        android:background="@color/colorOrange">
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="130dp"
+            android:layout_height="64dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            android:text="时间"
+            android:padding="5dp"
+            android:gravity="center"/>
+        <View
+            android:id="@+id/v_line"
+            android:layout_width="2px"
+            android:layout_height="50dp"
+            android:background="@color/colorGrayline"
+            android:layout_gravity="center_vertical"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:padding="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:textColor="@color/colorGray"
+                    android:textSize="12sp"
+                    android:text="今日支出"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:textColor="@color/colorGreen"
+                    android:textSize="22sp"
+                    android:text="￥50.00"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:padding="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:textColor="@color/colorGray"
+                    android:textSize="12sp"
+                    android:text="今日收入"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:textColor="@color/colorRed"
+                    android:textSize="22sp"
+                    android:text="￥20.00"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ly_top_num"
+        android:background="#ffffff"/>
+
+    <ImageButton
+        android:id="@+id/ibtn_add"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@mipmap/add"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="15dp"
+        android:background="@drawable/add_edit"/>
+
+
+
+</RelativeLayout>
