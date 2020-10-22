@@ -1,7 +1,5 @@
 package com.example.blacktiger;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -11,6 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginText2Activity extends AppCompatActivity {
 
@@ -68,7 +68,7 @@ public class LoginText2Activity extends AppCompatActivity {
                     //销毁登录页面
                     LoginText2Activity.this.finish();
                     //跳转到欢迎界面，登录成功的状态传递到WelcomeActivity中
-                    startActivity(new Intent(LoginText2Activity.this,WelcomeActivity.class));
+                    startActivity(new Intent(LoginText2Activity.this,HomeActivity.class));
                     return;
                 }
             }

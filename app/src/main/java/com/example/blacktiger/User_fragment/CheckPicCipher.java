@@ -1,6 +1,5 @@
 package com.example.blacktiger.User_fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,9 +15,6 @@ import com.andrognito.patternlockview.PatternLockView;
 import com.andrognito.patternlockview.listener.PatternLockViewListener;
 import com.andrognito.patternlockview.utils.PatternLockUtils;
 import com.example.blacktiger.R;
-import com.example.blacktiger.SetPicCipherAgainActivity;
-import com.example.blacktiger.SetPicCipherfornewActivity;
-import com.example.blacktiger.WelcomeActivity;
 
 import java.util.List;
 
