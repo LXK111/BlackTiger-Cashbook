@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.andrognito.patternlockview.PatternLockView;
 import com.example.blacktiger.R;
 
 import static android.content.Context.MODE_PRIVATE;

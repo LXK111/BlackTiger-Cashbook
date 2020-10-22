@@ -1,13 +1,11 @@
 package com.example.blacktiger;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.andrognito.patternlockview.PatternLockView;
 import com.andrognito.patternlockview.listener.PatternLockViewListener;
@@ -48,7 +46,7 @@ public class SetPicCipherAgainActivity extends AppCompatActivity {
                     patternLockView.setViewMode(PatternLockView.PatternViewMode.CORRECT);
                     Toast.makeText(SetPicCipherAgainActivity.this,"设置完成",Toast.LENGTH_SHORT).show();
                     //图形密码设置成功，转入欢迎界面
-                    Intent intent = new Intent(SetPicCipherAgainActivity.this,WelcomeActivity.class);
+                    Intent intent = new Intent(SetPicCipherAgainActivity.this,HomeActivity.class);
                     startActivity(intent);
 
                 }

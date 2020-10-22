@@ -1,3 +1,52 @@
 <resources>
-    <string name="app_name">BlackTiger</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">登录</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="app_name">黑虎记账</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">User1</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">账户信息</string>
+    <string name="title_summary">概要</string>
+    <string name="title_income">收入</string>
+    <string name="title_outlay">支出</string>
+    <string name="Logout">切换账号</string>
+    <string name="tools">工具</string>
+    <string name="gallery">添加分类</string>
+    <string name="share">分享</string>
+    <string name="send">报告</string>
+    <string name="communicate"></string>
+    <string name="Help">帮助</string>
+    <string name="feedback">反馈</string>
+    <string name="about">关于</string>
+    <string name="splash_enterbutton_title">点击进入</string>
+    <string name="login_register"><u>注册用户</u></string>
+    <string name="login_nopwd"><u>忘记密码</u></string>
+    <string name="help_quick"><u>快速入门</u>></string>
+    <string name="help_document"><u>使用指南</u>></string>
+    <string name="help_ref"><u>参考资料</u>></string>
+
+    <string name="delete_confirm_title">询问</string>
+    <string name="delete_confirm_msg">您确认要删除选中的项吗?</string>
+    <string name="button_ok">确认</string>
+    <string name="button_cancel">放弃</string>
+
+    <string name="input_category">输入类别</string>
 </resources>

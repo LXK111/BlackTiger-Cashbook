@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.blacktiger.MD5Utils;
 import com.example.blacktiger.R;
-import com.example.blacktiger.SetCipherfornewActivity;
 
 import static android.content.Context.MODE_PRIVATE;
 

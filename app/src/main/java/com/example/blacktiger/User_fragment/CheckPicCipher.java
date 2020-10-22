@@ -1,6 +1,5 @@
 package com.example.blacktiger.User_fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,9 +15,6 @@ import com.andrognito.patternlockview.PatternLockView;
 import com.andrognito.patternlockview.listener.PatternLockViewListener;
 import com.andrognito.patternlockview.utils.PatternLockUtils;
 import com.example.blacktiger.R;
-import com.example.blacktiger.SetPicCipherAgainActivity;
-import com.example.blacktiger.SetPicCipherfornewActivity;
-import com.example.blacktiger.WelcomeActivity;
 
 import java.util.List;
 
@@ -60,13 +56,16 @@ public class CheckPicCipher extends Fragment {
                 if(PatternLockUtils.patternToString(patternLockView,pattern).equalsIgnoreCase(save_pattern)){//检测密码是否匹配
                     patternLockView.setViewMode(PatternLockView.PatternViewMode.CORRECT);
                     Toast.makeText(getActivity(),"设置完成",Toast.LENGTH_SHORT).show();
+                    if (initialScreen == null){
+                        initialScreen = new InitialScreen();
+                    }
                     //跳转回主页
                     Fragment fragment = getFragmentManager().findFragmentByTag("checkpiccipher");
                     getFragmentManager().beginTransaction().replace(R.id.fl_user_interface,initialScreen,"initial").addToBackStack(null).commitAllowingStateLoss();
                 }
                 else{
                     patternLockView.setViewMode(PatternLockView.PatternViewMode.WRONG);
-                    Toast.makeText(getActivity(),"两次输入不一致",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"两次输入不一致，请仔细查看之前绘制内容",Toast.LENGTH_SHORT).show();
                     Paper.book().delete(save_pattern_key);
                     //销毁当前fragment,跳转回上一级设置密码
                     getActivity().onBackPressed();

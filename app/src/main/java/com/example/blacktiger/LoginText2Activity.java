@@ -1,7 +1,5 @@
 package com.example.blacktiger;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -11,6 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginText2Activity extends AppCompatActivity {
 
@@ -56,15 +56,19 @@ public class LoginText2Activity extends AppCompatActivity {
                     Toast.makeText(LoginText2Activity.this,"请输入密码",Toast.LENGTH_SHORT).show();
                     return;
                 }
+                else if(!md5Psw.equals(spPsw)){
+                    //密码不一致，登录失败
+                    Toast.makeText(LoginText2Activity.this,"密码错误！",Toast.LENGTH_SHORT).show();
+                }
                 else if (md5Psw.equals(spPsw)){
                     //密码一致，登录成功
-                    Toast.makeText(LoginText2Activity.this,"登录成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginText2Activity.this,"登录成功～",Toast.LENGTH_SHORT).show();
                     //保持登录状态，在界面保存登录的用户名 定义方法saveLoginStatus boolean 状态；
                     saveLoginStatus(true);
                     //销毁登录页面
                     LoginText2Activity.this.finish();
                     //跳转到欢迎界面，登录成功的状态传递到WelcomeActivity中
-                    startActivity(new Intent(LoginText2Activity.this,WelcomeActivity.class));
+                    startActivity(new Intent(LoginText2Activity.this,HomeActivity.class));
                     return;
                 }
             }
