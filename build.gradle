@@ -17,6 +17,10 @@ allprojects {
     repositories {
         maven { url 'https://jitpack.io' }
         google()
+        maven{
+            url 'https://dl.bintray.com/lingguoding/maven/'
+        }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         jcenter()
     }
 }

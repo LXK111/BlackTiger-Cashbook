@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/906985373/BlackTiger.iml" filepath="$PROJECT_DIR$/.idea/modules/906985373/BlackTiger.iml" group="BlackTiger" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app.iml" group="BlackTiger/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/24754624/libs.iml" filepath="$PROJECT_DIR$/.idea/modules/24754624/libs.iml" group="BlackTiger/libs" />
     </modules>
   </component>
 </project>

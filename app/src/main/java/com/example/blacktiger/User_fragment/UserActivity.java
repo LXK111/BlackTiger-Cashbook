@@ -19,6 +19,5 @@ public class UserActivity extends AppCompatActivity {
         //把initialscreen添加到useractivity中
         getSupportFragmentManager().beginTransaction().add(R.id.fl_user_interface,initialScreen,"initial").commitAllowingStateLoss();
 
-
     }
 }
