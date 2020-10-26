@@ -32,12 +32,7 @@ import com.yanzhenjie.recyclerview.SwipeRecyclerView;
 import java.lang.reflect.Field;
 import java.util.List;
 
-/**
- * <p>
- * 触摸即开始拖拽。
- * </p>
- * Created by YanZhenjie on 2016/7/22.
- */
+
 public class CategoryDragTouchAdapter extends CategoryBaseAdapter<CategoryDragTouchAdapter.ViewHolder> {
 
     private SwipeRecyclerView mMenuRecyclerView;

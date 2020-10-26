@@ -7,35 +7,35 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.blacktiger.data.CategoryRepository;
+import com.example.blacktiger.data.Entity.Blacktiger;
 import com.example.blacktiger.data.Entity.Category;
-import com.example.blacktiger.data.Entity.WasteBook;
-import com.example.blacktiger.data.WasteBookRepository;
+import com.example.blacktiger.data.BlacktigerRepository;
 
 import java.util.List;
 
 public class PersonViewModel extends AndroidViewModel {
-    private WasteBookRepository wasteBookRepository;
+    private BlacktigerRepository blacktigerRepository;
     private CategoryRepository categoryRepository;
 
     public PersonViewModel(@NonNull Application application) {
         super(application);
-        wasteBookRepository = new WasteBookRepository(application);
+        blacktigerRepository = new BlacktigerRepository(application);
         categoryRepository = new CategoryRepository(application);
     }
 
-    public LiveData<List<WasteBook>> getAllWasteBookLive() {
-        return wasteBookRepository.getAllWasteBooksLive();
+    public LiveData<List<Blacktiger>> getAllWasteBookLive() {
+        return blacktigerRepository.getAllBlacktigerLive();
     }
 
     public LiveData<List<Category>> getAllCategoriesLive() {
         return categoryRepository.getAllCategoriesLive();
     }
 
-    public void insertWasteBook(WasteBook... wasteBooks) {
-        wasteBookRepository.insertWasteBook(wasteBooks);
+    public void insertWasteBook(Blacktiger... blacktigers) {
+        blacktigerRepository.insertBlacktiger(blacktigers);
     }
 
     public void deleteAllWasteBooks() {
-        wasteBookRepository.deleteAllWasteBooks();
+        blacktigerRepository.deleteAllBlacktiger();
     }
 }

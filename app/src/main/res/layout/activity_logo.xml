@@ -8,12 +8,12 @@
     android:gravity="center_horizontal"
     android:background="#FECE01"
     android:orientation="vertical"
-    tools:context=".LogoActivity">
+    tools:context=".login.LogoActivity">
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="@drawable/logo"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="100dp"
@@ -24,28 +24,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="黑"
-        android:textSize="40sp"
+        android:textSize="60sp"
         android:layout_gravity="center" />
     <TextView
         android:id="@+id/tv_title2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="虎"
-        android:textSize="40sp"
+        android:textSize="60sp"
         android:layout_gravity="center" />
     <TextView
         android:id="@+id/tv_title3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="记"
-        android:textSize="40sp"
+        android:textSize="60sp"
         android:layout_gravity="center" />
     <TextView
         android:id="@+id/tv_title4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="账"
-        android:textSize="40sp"
+        android:textSize="60sp"
         android:layout_gravity="center" />
 
 

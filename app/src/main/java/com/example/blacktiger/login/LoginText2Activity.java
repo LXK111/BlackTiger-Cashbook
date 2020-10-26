@@ -1,4 +1,4 @@
-package com.example.blacktiger;
+package com.example.blacktiger.login;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.blacktiger.HomeActivity;
+import com.example.blacktiger.R;
 
 public class LoginText2Activity extends AppCompatActivity {
 
@@ -48,7 +51,7 @@ public class LoginText2Activity extends AppCompatActivity {
                 //获取输入框内输入的用户名和密码
                 psw=et_psw.getText().toString().trim();
                 //对当前用户输入的密码进行MD5加密并进行比对判断，判断输入的密码与存入的密码是否一致
-                String md5Psw=MD5Utils.md5(psw);
+                String md5Psw= MD5Utils.md5(psw);
                 //spPsw为从存储区SharedPreferences中读出的密码
                 SharedPreferences sp = getSharedPreferences("loginInfo",MODE_PRIVATE);
                 spPsw=sp.getString("psw","");
@@ -68,7 +71,7 @@ public class LoginText2Activity extends AppCompatActivity {
                     //销毁登录页面
                     LoginText2Activity.this.finish();
                     //跳转到欢迎界面，登录成功的状态传递到WelcomeActivity中
-                    startActivity(new Intent(LoginText2Activity.this,HomeActivity.class));
+                    startActivity(new Intent(LoginText2Activity.this, HomeActivity.class));
                     return;
                 }
             }

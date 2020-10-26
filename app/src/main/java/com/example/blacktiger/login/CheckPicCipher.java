@@ -1,46 +1,45 @@
-package com.example.blacktiger;
+package com.example.blacktiger.login;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.andrognito.patternlockview.PatternLockView;
 import com.andrognito.patternlockview.listener.PatternLockViewListener;
 import com.andrognito.patternlockview.utils.PatternLockUtils;
+import com.example.blacktiger.R;
+import com.example.blacktiger.ui.person.InitialScreen;
 
 import java.util.List;
 
 import io.paperdb.Paper;
 
-public class LoginPicActivity extends AppCompatActivity {
+public class CheckPicCipher extends Fragment {
 
     PatternLockView patternLockView;
     String save_pattern_key = "pattern_code";
-    private TextView tv_to_input_text;
+    private InitialScreen initialScreen;
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_pic);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_check_pic_cipher,container,false);
+        return view;
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         //读取paper中存储的图形密码
         final String save_pattern = Paper.book().read(save_pattern_key);
-        patternLockView = findViewById(R.id.pattern_lock_view);
-
-        tv_to_input_text=findViewById(R.id.tv_to_input_text);
-        tv_to_input_text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginPicActivity.this,LoginText2Activity.class);
-                startActivity(intent);
-            }
-        });
-
-        //识别图案密码
+        patternLockView = view.findViewById(R.id.pattern_lock_view);
         patternLockView.addPatternLockListener(new PatternLockViewListener() {
             @Override
             public void onStarted() {
@@ -58,15 +57,15 @@ public class LoginPicActivity extends AppCompatActivity {
                         PatternLockUtils.patternToString(patternLockView,pattern));
                 if(PatternLockUtils.patternToString(patternLockView,pattern).equalsIgnoreCase(save_pattern)){//检测密码是否匹配
                     patternLockView.setViewMode(PatternLockView.PatternViewMode.CORRECT);
-                    Toast.makeText(LoginPicActivity.this,"密码正确",Toast.LENGTH_SHORT).show();
-                    LoginPicActivity.this.finish();
-                    //图形密码设置成功，转入欢迎界面
-                    Intent intent = new Intent(LoginPicActivity.this,HomeActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(getActivity(),"设置完成",Toast.LENGTH_SHORT).show();
+                    Navigation.findNavController(patternLockView).navigate(R.id.action_checkPicCipher_to_navigation_set);
                 }
                 else{
                     patternLockView.setViewMode(PatternLockView.PatternViewMode.WRONG);
-                    Toast.makeText(LoginPicActivity.this,"密码错误，请重新绘制",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"两次输入不一致，请仔细查看之前绘制内容",Toast.LENGTH_SHORT).show();
+                    Paper.book().delete(save_pattern_key);
+                    //销毁当前fragment,跳转回上一级设置密码
+                    getActivity().onBackPressed();
                 }
 
             }

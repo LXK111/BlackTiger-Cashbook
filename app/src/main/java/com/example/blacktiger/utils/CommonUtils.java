@@ -5,10 +5,6 @@ import android.text.TextUtils;
 import java.util.Collection;
 import java.util.WeakHashMap;
 
-/**
- * @author abner-l. 2017-02-05
- * @since 0.1.0
- */
 
 public class CommonUtils {
 

@@ -6,8 +6,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "WasteBook")
-public class WasteBook {
+@Entity(tableName = "Blacktiger")
+public class Blacktiger {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
@@ -34,7 +34,7 @@ public class WasteBook {
     //备注
     private String note;
 
-    public WasteBook( boolean type, double amount,String category,String icon, long time, String note) {
+    public Blacktiger(boolean type, double amount, String category, String icon, long time, String note) {
         this.type = type;
         this.amount=amount;
         this.category = category;
@@ -43,7 +43,7 @@ public class WasteBook {
         this.note = note;
     }
     @Ignore
-    public WasteBook(){
+    public Blacktiger(){
     }
 
     public int getId() {

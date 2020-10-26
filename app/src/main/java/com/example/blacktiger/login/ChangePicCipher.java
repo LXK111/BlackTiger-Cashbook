@@ -1,36 +1,51 @@
-package com.example.blacktiger;
+package com.example.blacktiger.login;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.andrognito.patternlockview.PatternLockView;
 import com.andrognito.patternlockview.listener.PatternLockViewListener;
 import com.andrognito.patternlockview.utils.PatternLockUtils;
+import com.example.blacktiger.R;
 
 import java.util.List;
 
 import io.paperdb.Paper;
 
-public class SetPicCipherfornewActivity extends AppCompatActivity {
+public class ChangePicCipher extends Fragment {
 
     PatternLockView patternLockView;
     String save_pattern_key = "pattern_code";
     String final_pattern = "";
-    private TextView tv_makesure_pic;
+    private CheckPicCipher checkPicCipher;
+
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_pic_cipherfornew);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_user_change_pic_cipher,container,false);
+        Log.d("change_pic_cipher","--onCreateView--");
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         //初始化paper存储
-        Paper.init(this);
+        Paper.init(getActivity());
         final String save_pattern = Paper.book().read(save_pattern_key);
-        //读取用户输入
-        patternLockView = findViewById(R.id.pattern_lock_view);
+        patternLockView = view.findViewById(R.id.pattern_lock_view);
         patternLockView.addPatternLockListener(new PatternLockViewListener() {
             @Override
             public void onStarted() {
@@ -53,14 +68,13 @@ public class SetPicCipherfornewActivity extends AppCompatActivity {
             }
         });
         //按下确认后
-        tv_makesure_pic=findViewById(R.id.tv_makesure_pic);
+        TextView tv_makesure_pic = view.findViewById(R.id.tv_makesure_pic);
         tv_makesure_pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Paper.book().write(save_pattern_key,final_pattern);
-                Toast.makeText(SetPicCipherfornewActivity.this,"确认成功",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(SetPicCipherfornewActivity.this,SetPicCipherAgainActivity.class);
-                startActivity(intent);
+                Toast.makeText(getActivity(),"确认成功",Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(v).navigate(R.id.action_changePicCipher_to_checkPicCipher);
             }
         });
 

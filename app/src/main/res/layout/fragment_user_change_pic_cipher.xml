@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".SetPicCipherfornewActivity">
+    tools:context=".login.SetPicCipherfornewActivity">
     <include layout="@layout/title_bar"></include><!--引入标题栏-->
 
     <TextView

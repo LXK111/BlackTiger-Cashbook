@@ -7,6 +7,9 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.blacktiger.login.LogoActivity;
+import com.example.blacktiger.login.SetCipherfornewActivity;
+
 import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //若图形密码非空，表示是老用户
                 if(save_pattern != null && !save_pattern.equals("null")){
-                    Intent intent = new Intent(MainActivity.this,LogoActivity.class);
+                    Intent intent = new Intent(MainActivity.this, LogoActivity.class);
                     startActivity(intent);
 
                 }
                 //表示是新用户，跳入初次设置密码界面
                 else{
-                    Intent intent = new Intent(MainActivity.this,SetCipherfornewActivity.class);
+                    Intent intent = new Intent(MainActivity.this, SetCipherfornewActivity.class);
                     startActivity(intent);
                 }
 

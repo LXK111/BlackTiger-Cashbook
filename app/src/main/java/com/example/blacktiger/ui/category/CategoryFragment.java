@@ -100,14 +100,14 @@ public class CategoryFragment extends Fragment {
                             String temp = OUTCategory.get(adapterPosition).getName();
                             if (temp != null && !temp.isEmpty()) {
                                 Log.e("xxxx", temp);
-                                Intent intent = new Intent(getContext(), CategoryWasteBookFragment.class);
-                                intent.putExtra(CategoryWasteBookFragment.ARG_PARAM1, temp);
+                                Intent intent = new Intent(getContext(), CategoryBlacktiger.class);
+                                intent.putExtra(CategoryBlacktiger.ARG_PARAM1, temp);
                                 startActivity(intent);
                                 //Navigation.findNavController(get).navigate(R.id.action_categoryFragment_to_categoryWasteBookFragment, bundle);
 //                                getFragmentManager()
 //                                        .beginTransaction()
 //                                        //.addToBackStack(null)  //将当前fragment加入到返回栈中
-//                                        .replace(R.id.fragment_wb,  CategoryWasteBookFragment.newInstance(temp)).commit();
+//                                        .replace(R.id.fragment_wb,  CategoryBlacktiger.newInstance(temp)).commit();
                             }
                         }
                     });

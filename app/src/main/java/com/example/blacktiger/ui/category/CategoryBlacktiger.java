@@ -7,15 +7,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.blacktiger.R;
-import com.example.blacktiger.adapters.WasteBookAdapter;
-import com.example.blacktiger.data.Entity.WasteBook;
+import com.example.blacktiger.adapters.BlacktigerAdapter;
+import com.example.blacktiger.data.Entity.Blacktiger;
 import com.example.blacktiger.ui.detail.DetailViewModel;
 
 import java.text.DecimalFormat;
@@ -23,39 +22,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CategoryWasteBookFragment#} factory method to
- * create an instance of this fragment.
- * **************BUG Fragment ************
- * I don't how to transact and it can't findViewById ,occur NullPointerException all the time .
- * so I make it become a activity
- */
 
 
-public class CategoryWasteBookFragment extends AppCompatActivity {
+
+public class CategoryBlacktiger extends AppCompatActivity {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    public static final String ARG_PARAM1 = "CategoryWasteBookFragment";
+    public static final String ARG_PARAM1 = "CategoryBlacktiger";
 
     // TODO: Rename and change types of parameters
-    private String categoryWasteBook;
+    private String categoryBlacktiger;
     private TextView tv_categoryWasteBook;
     private TextView tv_category_mount_wb;
     private ImageView imageViewBack;
 
     private RecyclerView recyclerView;
-    private WasteBookAdapter wasteBookAdapter;
-    private List<WasteBook> selectedWasteBooks;
+    private BlacktigerAdapter blacktigerAdapter;
+    private List<Blacktiger> selectedBlacktigers;
     private DetailViewModel detailViewModel;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_category_wastebook);
+        setContentView(R.layout.fragment_category);
         if (getIntent() != null) {
-            categoryWasteBook = getIntent().getStringExtra(ARG_PARAM1);
+            categoryBlacktiger = getIntent().getStringExtra(ARG_PARAM1);
         }
         tv_categoryWasteBook = findViewById(R.id.textView_category_wb_total);
         tv_category_mount_wb = findViewById(R.id.textView_category_mount_wb);
@@ -70,28 +62,28 @@ public class CategoryWasteBookFragment extends AppCompatActivity {
         detailViewModel = ViewModelProviders.of(this).get(DetailViewModel.class);
         recyclerView = findViewById(R.id.recyclerView_categoryWb);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        wasteBookAdapter = new WasteBookAdapter(this, false);
-        recyclerView.setAdapter(wasteBookAdapter);
+        blacktigerAdapter = new BlacktigerAdapter(this, false);
+        recyclerView.setAdapter(blacktigerAdapter);
 
-        detailViewModel.getAllWasteBookLive().observe(this, new Observer<List<WasteBook>>() {
+        detailViewModel.getAllBlacktigerLive().observe(this, new Observer<List<Blacktiger>>() {
             @Override
-            public void onChanged(List<WasteBook> wasteBooks) {
-                if (wasteBooks != null) {
+            public void onChanged(List<Blacktiger> blacktigers) {
+                if (blacktigers != null) {
                     DecimalFormat mAmountFormat = new DecimalFormat("0.00");
                     int mount = 0;
                     double total = 0.0;
-                    selectedWasteBooks = new ArrayList<>();
-                    for (WasteBook w : wasteBooks) {
-                        if (w.getCategory().equals(categoryWasteBook)) {
-                            selectedWasteBooks.add(w);
+                    selectedBlacktigers = new ArrayList<>();
+                    for (Blacktiger w : blacktigers) {
+                        if (w.getCategory().equals(categoryBlacktiger)) {
+                            selectedBlacktigers.add(w);
                             total += w.getAmount();
                             mount++;
                         }
                     }
                     tv_category_mount_wb.setText("总计：" + mount + "条账单");
                     tv_categoryWasteBook.setText("共 " + mAmountFormat.format(total) + "元");
-                    wasteBookAdapter.setAllWasteBook(selectedWasteBooks);
-                    wasteBookAdapter.notifyDataSetChanged();
+                    blacktigerAdapter.setAllBlacktiger(selectedBlacktigers);
+                    blacktigerAdapter.notifyDataSetChanged();
                 }
             }
         });

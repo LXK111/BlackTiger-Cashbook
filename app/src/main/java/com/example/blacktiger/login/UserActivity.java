@@ -1,10 +1,11 @@
-package com.example.blacktiger.User_fragment;
+package com.example.blacktiger.login;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.blacktiger.R;
+import com.example.blacktiger.ui.person.InitialScreen;
 
 public class UserActivity extends AppCompatActivity {
 

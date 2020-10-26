@@ -6,21 +6,21 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.blacktiger.data.Entity.WasteBook;
-import com.example.blacktiger.data.WasteBookRepository;
+import com.example.blacktiger.data.Entity.Blacktiger;
+import com.example.blacktiger.data.BlacktigerRepository;
 
 import java.util.List;
 
 public class ChartViewModel extends AndroidViewModel {
 
-    private WasteBookRepository wasteBookRepository;
+    private BlacktigerRepository blacktigerRepository;
 
     public ChartViewModel(@NonNull Application application) {
         super(application);
-        wasteBookRepository = new WasteBookRepository(application);
+        blacktigerRepository = new BlacktigerRepository(application);
     }
 
-    public LiveData<List<WasteBook>> getAllWasteBookLive() {
-        return wasteBookRepository.getAllWasteBooksLiveByAmount();
+    public LiveData<List<Blacktiger>> getAllBlacktigerLive() {
+        return blacktigerRepository.getAllWasteBooksLiveByAmount();
     }
 }

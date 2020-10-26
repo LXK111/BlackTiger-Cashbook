@@ -18,9 +18,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * @author abner-l. 2017-03-11
- */
+
 
 public class DatePickUtils {
 

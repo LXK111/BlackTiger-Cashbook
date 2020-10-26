@@ -12,9 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.blacktiger.data.Entity.Blacktiger;
 import com.google.gson.Gson;
 import com.example.blacktiger.R;
-import com.example.blacktiger.data.Entity.WasteBook;
 import com.example.blacktiger.ui.detail.EditFragment;
 import com.example.blacktiger.utils.DateToLongUtils;
 
@@ -23,26 +23,26 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WasteBookAdapter extends RecyclerView.Adapter<WasteBookAdapter.MyViewHolder> {
-    private List<WasteBook> allWasteBook = new ArrayList<>();
+public class BlacktigerAdapter extends RecyclerView.Adapter<BlacktigerAdapter.MyViewHolder> {
+    private List<Blacktiger> allBlacktiger = new ArrayList<>();
     private DecimalFormat amountFormat = new DecimalFormat("#.##");
     private Context context;
     private boolean isSetOnClickListener;
-    public WasteBookAdapter(Context context,boolean isSetOnClickListener) {
+    public BlacktigerAdapter(Context context, boolean isSetOnClickListener) {
         this.context=context;
         this.isSetOnClickListener=isSetOnClickListener;
 
     }
 
-    public void setAllWasteBook(List<WasteBook> allWasteBook) {
-        this.allWasteBook = allWasteBook;
+    public void setAllBlacktiger(List<Blacktiger> allBlacktiger) {
+        this.allBlacktiger = allBlacktiger;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View itemView = layoutInflater.inflate(R.layout.wastebook_card,parent,false);
+        View itemView = layoutInflater.inflate(R.layout.blacktiger_card,parent,false);
 
         final MyViewHolder holder = new MyViewHolder(itemView);
 
@@ -51,22 +51,22 @@ public class WasteBookAdapter extends RecyclerView.Adapter<WasteBookAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        final WasteBook wasteBook = allWasteBook.get(position);
+        final Blacktiger blacktiger = allBlacktiger.get(position);
 
-        holder.tv_type.setText(wasteBook.getCategory());
-        holder.imageView.setImageDrawable(context.getDrawable(getDrawableId(wasteBook.getIcon())));
-        holder.tv_date.setText(DateToLongUtils.longToDate(wasteBook.getTime()));
-        if(wasteBook.isType())
-            holder.tv_amount.setText("- "+amountFormat.format(wasteBook.getAmount()));
-        else holder.tv_amount.setText(amountFormat.format(wasteBook.getAmount()));
+        holder.tv_type.setText(blacktiger.getCategory());
+        holder.imageView.setImageDrawable(context.getDrawable(getDrawableId(blacktiger.getIcon())));
+        holder.tv_date.setText(DateToLongUtils.longToDate(blacktiger.getTime()));
+        if(blacktiger.isType())
+            holder.tv_amount.setText("- "+amountFormat.format(blacktiger.getAmount()));
+        else holder.tv_amount.setText(amountFormat.format(blacktiger.getAmount()));
         if(isSetOnClickListener) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
                     Gson gson = new Gson();
-                    String wasteBookJson = gson.toJson(wasteBook, WasteBook.class);
-                    bundle.putString(EditFragment.WASTEBOOK_EDIT, wasteBookJson);
+                    String wasteBookJson = gson.toJson(blacktiger, Blacktiger.class);
+                    bundle.putString(EditFragment.BLACKTIGER_EDIT, wasteBookJson);
                     Navigation.findNavController(v).navigate(R.id.action_navigation_detail_to_editFragment, bundle);
                 }
             });
@@ -75,7 +75,7 @@ public class WasteBookAdapter extends RecyclerView.Adapter<WasteBookAdapter.MyVi
 
     @Override
     public int getItemCount() {
-        return allWasteBook.size();
+        return allBlacktiger.size();
     }
 
     //自定义ViewHolder:内部类，static 防止内存泄露
@@ -84,10 +84,10 @@ public class WasteBookAdapter extends RecyclerView.Adapter<WasteBookAdapter.MyVi
         ImageView imageView;
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_type=itemView.findViewById(R.id.wastebook_type);
-            tv_date=itemView.findViewById(R.id.wastebook_date);
-            tv_amount=itemView.findViewById(R.id.wastebook_amount);
-            imageView=itemView.findViewById(R.id.imageView_wasteBook_category);
+            tv_type=itemView.findViewById(R.id.blacktiger_type);
+            tv_date=itemView.findViewById(R.id.blacktiger_date);
+            tv_amount=itemView.findViewById(R.id.blacktiger_amount);
+            imageView=itemView.findViewById(R.id.imageView_blacktiger_category);
 //            itemView.setOnClickListener(this);
         }
 

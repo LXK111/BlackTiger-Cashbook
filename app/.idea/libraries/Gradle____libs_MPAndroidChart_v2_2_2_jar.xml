@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: ./libs/MPAndroidChart-v2.2.2.jar">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/MPAndroidChart-v2.2.2.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

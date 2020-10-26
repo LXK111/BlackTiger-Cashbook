@@ -18,18 +18,11 @@
             android:id="@+id/action_navigation_detail_to_editFragment"
             app:destination="@id/editFragment" />
     </fragment>
-
     <fragment
         android:id="@+id/navigation_chart"
         android:name="com.example.blacktiger.ui.chart.ChartFragment"
         android:label="@string/title_chart"
         tools:layout="@layout/fragment_chart" />
-
-    <fragment
-        android:id="@+id/navigation_person"
-        android:name="com.example.blacktiger.ui.person.PersonFragment"
-        android:label="@string/title_person"
-        tools:layout="@layout/fragment_person" />
     <fragment
         android:id="@+id/navigation_add"
         android:name="com.example.blacktiger.ui.add.AddFragment"
@@ -50,16 +43,47 @@
         android:label="fragment_category"
         tools:layout="@layout/fragment_category" >
         <action
-            android:id="@+id/action_categoryFragment_to_categoryWasteBookFragment"
-            app:destination="@id/categoryWasteBookFragment" />
+            android:id="@+id/action_categoryFragment_to_categoryBlacktigerFragment"
+            app:destination="@id/categoryBlacktigerFragment" />
     </fragment>
     <fragment
-        android:id="@+id/categoryWasteBookFragment"
-        android:name="com.example.blacktiger.ui.category.CategoryWasteBookFragment"
-        android:label="fragment_category_wastebook"
-        tools:layout="@layout/fragment_category_wastebook" >
+        android:id="@+id/categoryBlacktigerFragment"
+        android:name="com.example.blacktiger.ui.category.CategoryBlacktiger"
+        android:label="fragment_category_blacktiger"
+        tools:layout="@layout/activity_category_blacktiger" >
         <action
-            android:id="@+id/action_categoryWasteBookFragment_to_categoryFragment"
+            android:id="@+id/action_categoryBlacktigerFragment_to_categoryFragment"
             app:destination="@id/categoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePicCipher"
+        android:name="com.example.blacktiger.login.ChangePicCipher"
+        android:label="修改图形密码" >
+        <action
+            android:id="@+id/action_changePicCipher_to_checkPicCipher"
+            app:destination="@id/checkPicCipher" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeTextCipher"
+        android:name="com.example.blacktiger.login.ChangeTextCipher"
+        android:label="修改文本密码"/>
+    <fragment
+        android:id="@+id/navigation_set"
+        android:name="com.example.blacktiger.ui.person.InitialScreen"
+        android:label="@string/title_set" >
+        <action
+            android:id="@+id/action_navigation_set_to_changeTextCipher"
+            app:destination="@id/changeTextCipher" />
+        <action
+            android:id="@+id/action_navigation_set_to_changePicCipher"
+            app:destination="@id/changePicCipher" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkPicCipher"
+        android:name="com.example.blacktiger.login.CheckPicCipher"
+        android:label="确认密码" >
+        <action
+            android:id="@+id/action_checkPicCipher_to_navigation_set"
+            app:destination="@id/navigation_set" />
     </fragment>
 </navigation>

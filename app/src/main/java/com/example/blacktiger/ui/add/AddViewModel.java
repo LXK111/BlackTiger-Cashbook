@@ -22,8 +22,8 @@ import com.example.blacktiger.HomeActivity;
 import com.example.blacktiger.R;
 import com.example.blacktiger.data.CategoryRepository;
 import com.example.blacktiger.data.Entity.Category;
-import com.example.blacktiger.data.Entity.WasteBook;
-import com.example.blacktiger.data.WasteBookRepository;
+import com.example.blacktiger.data.Entity.Blacktiger;
+import com.example.blacktiger.data.BlacktigerRepository;
 import com.example.blacktiger.utils.CommonUtils;
 import com.example.blacktiger.utils.DatePickUtils;
 import com.example.blacktiger.utils.DateToLongUtils;
@@ -46,9 +46,9 @@ public class AddViewModel extends AndroidViewModel {
     private String iconId;
     private long mDate;
     private double mAmount;
-    private WasteBookRepository wasteBookRepository;
+    private BlacktigerRepository blacktigerRepository;
     private CategoryRepository categoryRepository;
-    private WasteBook wasteBookEdit;
+    private Blacktiger blacktigerEdit;
 
     public AddViewModel(@NonNull Application application) {
         super(application);
@@ -56,7 +56,7 @@ public class AddViewModel extends AndroidViewModel {
                 application, R.string.date_format_y_m_d) + " HH:mm", Locale.getDefault());
         mDate = System.currentTimeMillis();
         mDateText.set(mDateFormat.format(new Date(mDate)));
-        wasteBookRepository = new WasteBookRepository(application);
+        blacktigerRepository = new BlacktigerRepository(application);
         categoryRepository = new CategoryRepository(application);
     }
 
@@ -165,18 +165,18 @@ public class AddViewModel extends AndroidViewModel {
             Boolean wasteBookType = true;
             if (getText().getValue().contains("2")) wasteBookType = false;
             Log.e("getDesc", getDesc().get());
-            if (wasteBookEdit != null) {
-                wasteBookEdit.setAmount(Double.parseDouble(getAmountText().get()));
-                wasteBookEdit.setIcon(iconId);
-                wasteBookEdit.setCategory(getType().get());
-                wasteBookEdit.setNote(getDesc().get());
-                wasteBookEdit.setTime(mDate);
-                wasteBookEdit.setType(wasteBookType);
-                updateDate(wasteBookEdit);
+            if (blacktigerEdit != null) {
+                blacktigerEdit.setAmount(Double.parseDouble(getAmountText().get()));
+                blacktigerEdit.setIcon(iconId);
+                blacktigerEdit.setCategory(getType().get());
+                blacktigerEdit.setNote(getDesc().get());
+                blacktigerEdit.setTime(mDate);
+                blacktigerEdit.setType(wasteBookType);
+                updateDate(blacktigerEdit);
                 Toast.makeText(activity, "修改成功!", Toast.LENGTH_SHORT).show();
             } else {
-                WasteBook wasteBook = new WasteBook(wasteBookType, Double.parseDouble(getAmountText().get()), getType().get(), iconId, mDate, getDesc().get());
-                saveData(wasteBook);
+                Blacktiger blacktiger = new Blacktiger(wasteBookType, Double.parseDouble(getAmountText().get()), getType().get(), iconId, mDate, getDesc().get());
+                saveData(blacktiger);
             }
             //activity.finish();
             Intent intent = new Intent(activity, HomeActivity.class);
@@ -188,14 +188,14 @@ public class AddViewModel extends AndroidViewModel {
         this.iconId = iconId;
     }
 
-    private void updateDate(WasteBook wasteBook) {
+    private void updateDate(Blacktiger blacktiger) {
         Log.e("xxxxxx", "update");
-        wasteBookRepository.updateWasteBook(wasteBook);
+        blacktigerRepository.updateBlacktiger(blacktiger);
     }
 
-    private void saveData(WasteBook wasteBook) {
+    private void saveData(Blacktiger blacktiger) {
         Log.e("xxxxxx", "insert");
-        wasteBookRepository.insertWasteBook(wasteBook);
+        blacktigerRepository.insertBlacktiger(blacktiger);
     }
 
     public LiveData<List<Category>> getAllCategoriesLive() {
@@ -257,16 +257,16 @@ public class AddViewModel extends AndroidViewModel {
         this.mAmountText.set(mAmountText);
     }
 
-    public WasteBook getWasteBookEdit() {
-        return wasteBookEdit;
+    public Blacktiger getBlacktigerEdit() {
+        return blacktigerEdit;
     }
 
-    public void setWasteBook(WasteBook wasteBook) {
-        this.wasteBookEdit = wasteBook;
-        this.setType(wasteBook.getCategory());
-        this.setmAmountText(mAmountFormat.format(wasteBook.getAmount()));
-        this.setmDesc(wasteBook.getNote());
-        this.setmDateText(DateToLongUtils.longToDateAdd(wasteBook.getTime()));
-        this.setIconId(wasteBook.getIcon());
+    public void setWasteBook(Blacktiger blacktiger) {
+        this.blacktigerEdit = blacktiger;
+        this.setType(blacktiger.getCategory());
+        this.setmAmountText(mAmountFormat.format(blacktiger.getAmount()));
+        this.setmDesc(blacktiger.getNote());
+        this.setmDateText(DateToLongUtils.longToDateAdd(blacktiger.getTime()));
+        this.setIconId(blacktiger.getIcon());
     }
 }

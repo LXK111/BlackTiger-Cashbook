@@ -87,7 +87,7 @@
                 android:id="@+id/recyclerView_memo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/wastebook_card" />
+                tools:listitem="@layout/blacktiger_card" />
         </LinearLayout>
 
         <TextView

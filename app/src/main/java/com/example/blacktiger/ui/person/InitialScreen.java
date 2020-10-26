@@ -1,4 +1,4 @@
-package com.example.blacktiger.User_fragment;
+package com.example.blacktiger.ui.person;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,8 +12,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.blacktiger.R;
+import com.example.blacktiger.login.ChangePicCipher;
+import com.example.blacktiger.login.ChangeTextCipher;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -50,17 +53,7 @@ public class InitialScreen extends Fragment {
         mBtnChangeTextCipher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (changeTextCipher== null){
-                    changeTextCipher = new ChangeTextCipher();//实例化一个修改密码fragment
-                }
-                Fragment fragment = getFragmentManager().findFragmentByTag("initial");
-                if (fragment != null){
-                    getFragmentManager().beginTransaction().hide(fragment).add(R.id.fl_user_interface,changeTextCipher,"textcipher").addToBackStack(null).commitAllowingStateLoss();
-                }
-                 else {
-                     getFragmentManager().beginTransaction().hide(fragment).replace(R.id.fl_user_interface,changeTextCipher,"textcipher").addToBackStack(null).commitAllowingStateLoss();
-                }
-
+                Navigation.findNavController(v).navigate(R.id.action_navigation_set_to_changeTextCipher);
             }
         });
 
@@ -69,17 +62,7 @@ public class InitialScreen extends Fragment {
         mBtnChangePicCipher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (changePicCipher == null){
-                    changePicCipher = new ChangePicCipher();//实例化一个修改图形密码fragment
-                }
-                Fragment fragment = getFragmentManager().findFragmentByTag("initial");
-                if (fragment != null){
-                    getFragmentManager().beginTransaction().hide(fragment).add(R.id.fl_user_interface,changePicCipher,"piccipher").addToBackStack(null).commitAllowingStateLoss();
-                }
-                else {
-                    getFragmentManager().beginTransaction().hide(fragment).replace(R.id.fl_user_interface,changePicCipher,"piccipher").addToBackStack(null).commitAllowingStateLoss();
-                }
-
+                Navigation.findNavController(v).navigate(R.id.action_navigation_set_to_changePicCipher);
             }
         });
 

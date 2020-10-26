@@ -77,9 +77,9 @@
             android:text="金额排行榜">
         </TextView>
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_wasteBook_chart"
+            android:id="@+id/recyclerView_blacktiger_chart"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            tools:listitem="@layout/wastebook_card"/>
+            tools:listitem="@layout/blacktiger_card"/>
     </LinearLayout>
 </ScrollView>

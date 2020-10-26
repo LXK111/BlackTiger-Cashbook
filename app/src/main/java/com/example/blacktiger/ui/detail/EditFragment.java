@@ -15,10 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
+import com.example.blacktiger.data.Entity.Blacktiger;
 import com.google.gson.Gson;
 import com.example.blacktiger.R;
-import com.example.blacktiger.adapters.WasteBookAdapter;
-import com.example.blacktiger.data.Entity.WasteBook;
+import com.example.blacktiger.adapters.BlacktigerAdapter;
 import com.example.blacktiger.ui.add.AddActivity;
 
 import java.text.DecimalFormat;
@@ -26,9 +26,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class EditFragment extends Fragment {
-    public static final String WASTEBOOK_EDIT = "wasteBook_edit";
+    public static final String BLACKTIGER_EDIT = "blacktiger_edit";
     private DetailViewModel detailViewModel;
-    private WasteBook wasteBook;
+    private Blacktiger blacktiger;
     private TextView type, amount, info, date, category;
     private ImageView icon;
     private Button bt_edit, bt_delete;
@@ -60,40 +60,37 @@ public class EditFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         detailViewModel = ViewModelProviders.of(this).get(DetailViewModel.class);
         Gson gson = new Gson();
-        String wasteBookJson = getArguments().getString(WASTEBOOK_EDIT);
-        if (wasteBookJson != null) {
-            wasteBook = gson.fromJson(wasteBookJson, WasteBook.class);
-            if (wasteBook.isType()) {
+        String blacktigerJson = getArguments().getString(BLACKTIGER_EDIT);
+        if (blacktigerJson != null) {
+            blacktiger = gson.fromJson(blacktigerJson, Blacktiger.class);
+            if (blacktiger.isType()) {
                 type.setText("支出");
-                amount.setText("-" + mAmountFormat.format(wasteBook.getAmount()));
+                amount.setText("-" + mAmountFormat.format(blacktiger.getAmount()));
             } else {
                 type.setText("收入");
-                amount.setText("+" + mAmountFormat.format(wasteBook.getAmount()));
+                amount.setText("+" + mAmountFormat.format(blacktiger.getAmount()));
             }
-            date.setText(sdf.format(new Date(wasteBook.getTime())));
-            category.setText(wasteBook.getCategory());
-            info.setText(wasteBook.getNote());
-            icon.setImageDrawable(getContext().getDrawable(WasteBookAdapter.getDrawableId(wasteBook.getIcon())));
+            date.setText(sdf.format(new Date(blacktiger.getTime())));
+            category.setText(blacktiger.getCategory());
+            info.setText(blacktiger.getNote());
+            icon.setImageDrawable(getContext().getDrawable(BlacktigerAdapter.getDrawableId(blacktiger.getIcon())));
         }
 
         bt_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (wasteBook != null) {
+                if (blacktiger != null) {
                     Intent intent = new Intent(getActivity(), AddActivity.class);
-                    intent.putExtra(WASTEBOOK_EDIT, wasteBookJson);
+                    intent.putExtra(BLACKTIGER_EDIT, blacktigerJson);
                     startActivity(intent);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString(WASTEBOOK_EDIT,wasteBookJson);
-//                    Navigation.findNavController(v).navigate(R.id.action_editFragment_to_navigation_add,bundle);
                 }
             }
         });
         bt_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (wasteBook != null)
-                    detailViewModel.deleteWasteBook(wasteBook);
+                if (blacktiger != null)
+                    detailViewModel.deleteWasteBook(blacktiger);
                 Navigation.findNavController(getActivity().findViewById(R.id.nav_host_fragment)).navigateUp();
             }
         });

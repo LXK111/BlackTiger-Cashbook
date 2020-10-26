@@ -9,23 +9,23 @@
 
         android:allowBackup="true"
         tools:replace="android:icon"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
 
         android:usesCleartextTraffic="true"
 
         android:theme="@style/AppTheme">
-        <activity android:name=".User_fragment.UserActivity"></activity>
-        <activity android:name=".LoginPicActivity" />
-        <activity android:name=".LoginText2Activity" />
-        <activity android:name=".LoginTextActivity" />
-        <activity android:name=".LogoActivity" />
-        <activity android:name=".WelcomeActivity" />
-        <activity android:name=".SetPicCipherAgainActivity" />
-        <activity android:name=".SetPicCipherfornewActivity" />
-        <activity android:name=".SetCipherfornewActivity" />
+        <activity android:name=".login.UserActivity"></activity>
+        <activity android:name=".login.LoginPicActivity" />
+        <activity android:name=".login.LoginText2Activity" />
+        <activity android:name=".login.LoginTextActivity" />
+        <activity android:name=".login.LogoActivity" />
+        <activity android:name=".login.WelcomeActivity" />
+        <activity android:name=".login.SetPicCipherAgainActivity" />
+        <activity android:name=".login.SetPicCipherfornewActivity" />
+        <activity android:name=".login.SetCipherfornewActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,7 +50,7 @@
         <activity android:name="com.example.blacktiger.login.LoginActivity"
             android:theme="@style/NoActionBar">
         </activity>
-        <activity android:name="com.example.blacktiger.ui.category.CategoryWasteBookFragment"
+        <activity android:name="com.example.blacktiger.ui.category.CategoryBlacktiger"
             android:theme="@style/NoActionBar">
         </activity>
 

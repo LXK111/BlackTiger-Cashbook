@@ -1,4 +1,4 @@
-package com.example.blacktiger.User_fragment;
+package com.example.blacktiger.login;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.blacktiger.MD5Utils;
 import com.example.blacktiger.R;
 
 import static android.content.Context.MODE_PRIVATE;

@@ -22,9 +22,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-/**
- * Created by YanZhenjie on 2017/10/3.
- */
 public abstract class CategoryBaseAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
     private LayoutInflater mInflater;

@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Blacktiger</string>
+    <string name="app_name">黑虎记账</string>
     <string name="title_detail">明细</string>
     <string name="title_chart">图表</string>
-    <string name="title_person">我的</string>
+    <string name="title_set">我的</string>
 
     <string name="nav_detail">明细</string>
     <string name="nav_add">Add</string>

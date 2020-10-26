@@ -43,7 +43,7 @@
                 app:layout_constraintGuide_percent="0.96" />
 
             <TextView
-                android:id="@+id/wastebook_type"
+                android:id="@+id/blacktiger_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
@@ -53,7 +53,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/wastebook_amount"
+                android:id="@+id/blacktiger_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
@@ -63,7 +63,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView_wasteBook_category"
+                android:id="@+id/imageView_blacktiger_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -73,7 +73,7 @@
                 app:srcCompat="@drawable/ic_category_in_1" />
 
             <TextView
-                android:id="@+id/wastebook_date"
+                android:id="@+id/blacktiger_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"

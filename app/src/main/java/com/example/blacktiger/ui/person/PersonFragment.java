@@ -21,9 +21,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.blacktiger.R;
+import com.example.blacktiger.login.SetCipherfornewActivity;
 import com.example.blacktiger.data.Entity.Category;
-import com.example.blacktiger.data.Entity.WasteBook;
-import com.example.blacktiger.login.LoginActivity;
+import com.example.blacktiger.data.Entity.Blacktiger;
 import com.example.blacktiger.utils.DateToLongUtils;
 
 import java.util.Calendar;
@@ -54,7 +54,7 @@ public class PersonFragment extends Fragment {
         thisMonth = DateToLongUtils.getSysMonth();
 
         View root = inflater.inflate(R.layout.fragment_person, container, false);
-        tv_total_wastebook = root.findViewById(R.id.tv_total_wastebook);
+        tv_total_wastebook = root.findViewById(R.id.tv_total_blacktiger);
 
         tv_year_budget_total = root.findViewById(R.id.textView_year_budget);
         tv_year_budget_total.setText("设置" + thisYear + "年预算");
@@ -71,7 +71,7 @@ public class PersonFragment extends Fragment {
         tv_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), LoginActivity.class));
+                startActivity(new Intent(getActivity(), SetCipherfornewActivity.class));
             }
         });
         return root;
@@ -94,14 +94,14 @@ public class PersonFragment extends Fragment {
             }
         }
 
-        personViewModel.getAllWasteBookLive().observe(getViewLifecycleOwner(), new Observer<List<WasteBook>>() {
+        personViewModel.getAllWasteBookLive().observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
             @Override
-            public void onChanged(List<WasteBook> wasteBooks) {
-                tv_total_wastebook.setText(wasteBooks.size() + "条记录");
-                if (wasteBooks != null) {
+            public void onChanged(List<Blacktiger> blacktigers) {
+                tv_total_wastebook.setText(blacktigers.size() + "条记录");
+                if (blacktigers != null) {
                     yearTotal = 0.0;
                     monthTotal = 0.0;
-                    for (WasteBook w : wasteBooks) {
+                    for (Blacktiger w : blacktigers) {
                         String yearStart = thisYear + "-01-01 00:00:00";
                         String monthStart = thisYear + "-" + thisMonth + "-1 00:00:00";
                         if (w.getTime() >= DateToLongUtils.dateToLong(yearStart)) {
@@ -269,48 +269,48 @@ public class PersonFragment extends Fragment {
         for (int i = 0; i < mount * 2; i++) {
             cal.add(Calendar.DAY_OF_MONTH, -i);
             int a = random.nextInt(1000);
-            WasteBook wasteBook = new WasteBook();
-            wasteBook.setType(a % 2 != 0);
-            setWasteBookIconName(wasteBook);
-            wasteBook.setTime(cal.getTimeInMillis());
-            wasteBook.setNote(note);
+            Blacktiger blacktiger = new Blacktiger();
+            blacktiger.setType(a % 2 != 0);
+            setWasteBookIconName(blacktiger);
+            blacktiger.setTime(cal.getTimeInMillis());
+            blacktiger.setNote(note);
             if (a % 2 != 0) a = a * 2;
-            wasteBook.setAmount(a + 600);
-            personViewModel.insertWasteBook(wasteBook);
+            blacktiger.setAmount(a + 600);
+            personViewModel.insertWasteBook(blacktiger);
             cal.setTime(date);
         }
         //month
         for (int i = 0; i < mount; i++) {
             cal.add(Calendar.MONTH, -i);
             int a = random.nextInt(1000);
-            WasteBook wasteBook = new WasteBook();
-            wasteBook.setType(a % 5 != 0);
-            setWasteBookIconName(wasteBook);
-            wasteBook.setTime(cal.getTimeInMillis());
-            wasteBook.setNote(note);
+            Blacktiger blacktiger = new Blacktiger();
+            blacktiger.setType(a % 5 != 0);
+            setWasteBookIconName(blacktiger);
+            blacktiger.setTime(cal.getTimeInMillis());
+            blacktiger.setNote(note);
             if (a % 2 != 0) a = a * 2;
-            wasteBook.setAmount(a + 600);
-            personViewModel.insertWasteBook(wasteBook);
+            blacktiger.setAmount(a + 600);
+            personViewModel.insertWasteBook(blacktiger);
             cal.setTime(date);
         }
 
         for (int i = 0; i < mount / 2; i++) {
             cal.add(Calendar.YEAR, -i);
             int a = random.nextInt(1000);
-            WasteBook wasteBook = new WasteBook();
-            wasteBook.setType(a % 5 != 0);
-            setWasteBookIconName(wasteBook);
-            wasteBook.setTime(cal.getTimeInMillis());
-            wasteBook.setNote(note);
+            Blacktiger blacktiger = new Blacktiger();
+            blacktiger.setType(a % 5 != 0);
+            setWasteBookIconName(blacktiger);
+            blacktiger.setTime(cal.getTimeInMillis());
+            blacktiger.setNote(note);
             if (a % 2 != 0) a = a * 2;
-            wasteBook.setAmount(a + 600);
-            personViewModel.insertWasteBook(wasteBook);
+            blacktiger.setAmount(a + 600);
+            personViewModel.insertWasteBook(blacktiger);
             cal.setTime(date);
         }
 
     }
 
-    private void setWasteBookIconName(WasteBook w) {
+    private void setWasteBookIconName(Blacktiger w) {
         if (categoryList != null) {
             Random random = new Random();
             int a = random.nextInt(categoryList.size() - 1);

@@ -19,7 +19,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.gson.Gson;
 import com.example.blacktiger.R;
 import com.example.blacktiger.data.Entity.Category;
-import com.example.blacktiger.data.Entity.WasteBook;
+import com.example.blacktiger.data.Entity.Blacktiger;
 import com.example.blacktiger.databinding.FragmentAddBinding;
 import com.example.blacktiger.ui.category.CategoryActivity;
 import com.example.blacktiger.ui.detail.EditFragment;
@@ -43,7 +43,7 @@ public class AddFragment extends Fragment {
     private LiveData<List<Category>> allCategoriesLive;
     private List<Category> allCategories;
     private PageGridView<MyIconModel> mPageGridView;
-    private WasteBook wasteBook;
+    private Blacktiger blacktiger;
     private DecimalFormat mAmountFormat = new DecimalFormat("0.00");
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
 
@@ -91,12 +91,12 @@ public class AddFragment extends Fragment {
             Bundle savedInstanceState) {
         Gson gson = new Gson();
         Intent intent = getActivity().getIntent();
-        String wasteBookJson = intent.getStringExtra(EditFragment.WASTEBOOK_EDIT);
+        String wasteBookJson = intent.getStringExtra(EditFragment.BLACKTIGER_EDIT);
 //        String wasteBookJson = getArguments().getString(EditFragment.WASTEBOOK_EDIT);
         if (wasteBookJson != null) {
-            wasteBook = gson.fromJson(wasteBookJson, WasteBook.class);
+            blacktiger = gson.fromJson(wasteBookJson, Blacktiger.class);
             Log.e("xxxx", wasteBookJson);
-            addViewModel.setWasteBook(wasteBook);
+            addViewModel.setWasteBook(blacktiger);
         }
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add, container, false);
@@ -119,7 +119,7 @@ public class AddFragment extends Fragment {
                             if (position == mList.size() - 1) {
                                 startActivity(new Intent(requireActivity(), CategoryActivity.class));
                             } else {
-                                if (addViewModel.getWasteBookEdit() == null) {
+                                if (addViewModel.getBlacktigerEdit() == null) {
                                     addViewModel.setmAmountTextClear();
                                 }
                                 addViewModel.setType(mList.get(position).getName());
@@ -141,7 +141,7 @@ public class AddFragment extends Fragment {
                                 //跳转
                                 startActivity(new Intent(requireActivity(), CategoryActivity.class));
                             } else {
-                                if (addViewModel.getWasteBookEdit() == null) {
+                                if (addViewModel.getBlacktigerEdit() == null) {
                                     addViewModel.setmAmountTextClear();
                                 }
                                 addViewModel.setType(mList2.get(position).getName());

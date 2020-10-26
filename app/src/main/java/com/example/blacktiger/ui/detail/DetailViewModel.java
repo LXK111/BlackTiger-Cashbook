@@ -6,37 +6,37 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.blacktiger.data.Entity.WasteBook;
-import com.example.blacktiger.data.WasteBookRepository;
+import com.example.blacktiger.data.Entity.Blacktiger;
+import com.example.blacktiger.data.BlacktigerRepository;
 
 import java.util.List;
 
 public class DetailViewModel extends AndroidViewModel {
 
-    private WasteBookRepository wasteBookRepository;
+    private BlacktigerRepository blacktigerRepository;
     public DetailViewModel(@NonNull Application application) {
         super(application);
-        wasteBookRepository = new WasteBookRepository(application);
+        blacktigerRepository = new BlacktigerRepository(application);
     }
-    public LiveData<List<WasteBook>> getAllWasteBookLive(){
-        return wasteBookRepository.getAllWasteBooksLive();
+    public LiveData<List<Blacktiger>> getAllBlacktigerLive(){
+        return blacktigerRepository.getAllBlacktigerLive();
     }
-    public LiveData<List<WasteBook>> findWasteBookWithPattern(String pattern){
-        return wasteBookRepository.findWasteBookWithPattern(pattern);
-    }
-
-    public void insertWasteBook(WasteBook... wasteBooks) {
-        wasteBookRepository.insertWasteBook(wasteBooks);
+    public LiveData<List<Blacktiger>> findBlacktigerWithPattern(String pattern){
+        return blacktigerRepository.findWasteBookWithPattern(pattern);
     }
 
-    public void updateWasteBook(WasteBook... wasteBooks){
-        wasteBookRepository.updateWasteBook(wasteBooks);
-    }
-    public void deleteWasteBook(WasteBook... wasteBooks){
-        wasteBookRepository.deleteWasteBook(wasteBooks);
+    public void insertWasteBook(Blacktiger... blacktigers) {
+        blacktigerRepository.insertBlacktiger(blacktigers);
     }
 
-//    public LiveData<List<WasteBook>> selectWasteBookByLongTime(long a,long b){
+    public void updateWasteBook(Blacktiger... blacktigers){
+        blacktigerRepository.updateBlacktiger(blacktigers);
+    }
+    public void deleteWasteBook(Blacktiger... blacktigers){
+        blacktigerRepository.deleteBlacktiger(blacktigers);
+    }
+
+//    public LiveData<List<Blacktiger>> selectWasteBookByLongTime(long a,long b){
 //        return wasteBookRepository.selectWasteBookByLongTime(a,b);
 //    }
 

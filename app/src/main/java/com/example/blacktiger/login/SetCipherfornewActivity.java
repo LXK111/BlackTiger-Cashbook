@@ -1,4 +1,4 @@
-package com.example.blacktiger;
+package com.example.blacktiger.login;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +11,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
+import com.example.blacktiger.R;
+import com.example.blacktiger.data.Entity.User;
+
+import java.util.List;
 
 public class SetCipherfornewActivity extends AppCompatActivity {
 
@@ -18,12 +25,24 @@ public class SetCipherfornewActivity extends AppCompatActivity {
     private EditText et_user_name,et_psw,et_psw_again;//用户名、密码、二次输入的密码控件
     private String userName,psw,pswAgain;//用户名、密码、二次输入密码的参考值
 
+    private LoginViewModel loginViewModel;
+    private List<User> userList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_cipherfornew);
         //设置此界面为竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+        loginViewModel.getAllUserLive().observe(this, new Observer<List<User>>() {
+            @Override
+            public void onChanged(List<User> users) {
+                userList = users;
+            }
+        });
+
         init();
     }
 
@@ -66,6 +85,12 @@ public class SetCipherfornewActivity extends AppCompatActivity {
 //                    saveRegisterInfo(userName,psw);
                     //分别保存好用户名和密码
                     //以"userName"为key，用户输入的用户名作为value
+
+
+                    User user = new User(userName, psw);
+                    loginViewModel.insertUser(user);
+
+
                     SharedPreferences sp=getSharedPreferences("loginInfo",MODE_PRIVATE);
                     //获取编辑器
                     SharedPreferences.Editor editor=sp.edit();

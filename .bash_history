@@ -52,3 +52,9 @@ git init
 git status
 git commit  -m"代码重构"
 git push
+git init
+git status
+git add
+git add .
+git commit  -m"功能改"
+git push

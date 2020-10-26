@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.example.blacktiger.data.Entity.Blacktiger;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
@@ -27,8 +28,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.example.blacktiger.R;
-import com.example.blacktiger.adapters.WasteBookAdapter;
-import com.example.blacktiger.data.Entity.WasteBook;
+import com.example.blacktiger.adapters.BlacktigerAdapter;
 import com.example.blacktiger.utils.DateToLongUtils;
 import com.example.blacktiger.utils.PieChartUtils;
 
@@ -44,12 +44,12 @@ public class ChartFragment extends Fragment {
     private Double IN = 0.0, OUT = 0.0, TOTAL = 0.0;
     private long start, end;
     private String selectedStr = "近1个月";
-    private List<WasteBook> allWasteBooks;
-    private MutableLiveData<List<WasteBook>> selectedWasteBooks = new MutableLiveData<>();
+    private List<Blacktiger> allBlacktigers;
+    private MutableLiveData<List<Blacktiger>> selectedBlacktiger = new MutableLiveData<>();
 
     private RecyclerView recyclerView;
-    private WasteBookAdapter wasteBookAdapter;
-    private LiveData<List<WasteBook>> wasteBooksLive;
+    private BlacktigerAdapter blacktigerAdapter;
+    private LiveData<List<Blacktiger>> blacktigersLive;
     private ChartViewModel chartViewModel;
     private LineChart lineChart;
     private HashMap dataMap;
@@ -81,32 +81,32 @@ public class ChartFragment extends Fragment {
                 selector(selectedStr);
             }
         });
-        chartViewModel.getAllWasteBookLive().observe(getViewLifecycleOwner(), new Observer<List<WasteBook>>() {
+        chartViewModel.getAllBlacktigerLive().observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
             @Override
-            public void onChanged(List<WasteBook> wasteBooks) {
-                allWasteBooks = wasteBooks;
+            public void onChanged(List<Blacktiger> blacktigers) {
+                allBlacktigers = blacktigers;
                 selector(selectedStr);
             }
         });
         //饼状图数据，更新UI
-        selectedWasteBooks.observe(getViewLifecycleOwner(), new Observer<List<WasteBook>>() {
+        selectedBlacktiger.observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
             @Override
-            public void onChanged(List<WasteBook> wasteBooks) {
+            public void onChanged(List<Blacktiger> blacktigers) {
 //                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//                for(WasteBook w:wasteBooks){
+//                for(Blacktiger w:blacktigers){
 //                    Log.e("xxxxxxxxxxx",w.getCategory()+sdf.format(new Date(w.getTime())));
 //                }
                 dataMap = new HashMap();
-                if (wasteBooks.isEmpty()) {
+                if (blacktigers.isEmpty()) {
                     PieChartUtils.getPitChart().setPieChart(mPieChart, dataMap, isOUT ? "支出" : "收入", true);
                 }
-                if (wasteBooks != null && !wasteBooks.isEmpty()) {
-                    List<WasteBook> wasteBooksTemp = new ArrayList<>();
+                if (blacktigers != null && !blacktigers.isEmpty()) {
+                    List<Blacktiger> wasteBooksTemp = new ArrayList<>();
                     String categoriesTmp = "";
-                    double[] cWeight = new double[wasteBooks.size()];
-                    String[] categories = new String[wasteBooks.size()];
+                    double[] cWeight = new double[blacktigers.size()];
+                    String[] categories = new String[blacktigers.size()];
                     int i = 0;
-                    for (WasteBook w : wasteBooks) {
+                    for (Blacktiger w : blacktigers) {
                         String cTmp = w.getCategory();
                         if (!categoriesTmp.contains(cTmp)) {
                             wasteBooksTemp.add(w);
@@ -128,8 +128,8 @@ public class ChartFragment extends Fragment {
                     }
                     PieChartUtils.getPitChart().setPieChart(mPieChart, dataMap, isOUT ? "支出" : "收入", true);
 
-                    wasteBookAdapter.setAllWasteBook(wasteBooksTemp);
-                    wasteBookAdapter.notifyDataSetChanged();
+                    blacktigerAdapter.setAllBlacktiger(wasteBooksTemp);
+                    blacktigerAdapter.notifyDataSetChanged();
                 }
             }
         });
@@ -158,10 +158,10 @@ public class ChartFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         //初始化适配器
 
-        recyclerView = requireActivity().findViewById(R.id.recyclerView_wasteBook_chart);
+        recyclerView = requireActivity().findViewById(R.id.recyclerView_blacktiger_chart);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        wasteBookAdapter = new WasteBookAdapter(requireContext(), false);
-        recyclerView.setAdapter(wasteBookAdapter);
+        blacktigerAdapter = new BlacktigerAdapter(requireContext(), false);
+        recyclerView.setAdapter(blacktigerAdapter);
 
 
         initCustomOptionPicker();
@@ -216,29 +216,29 @@ public class ChartFragment extends Fragment {
 
 
     private void selector(String timeStr) {
-        List<WasteBook> showWasteBooks = new ArrayList<>();
+        List<Blacktiger> showBlacktigers = new ArrayList<>();
         IN = 0.0;
         OUT = 0.0;
         //支出
         if (isOUT) {
             setStartEnd(timeStr);
-            if (allWasteBooks != null)
-                for (WasteBook w : allWasteBooks) {
+            if (allBlacktigers != null)
+                for (Blacktiger w : allBlacktigers) {
                     if (w.isType() && w.getTime() >= end && w.getTime() <= start) {
-                        showWasteBooks.add(w);
+                        showBlacktigers.add(w);
                         OUT += w.getAmount();
                     }
                 }
         } else if (!isOUT) {
             setStartEnd(timeStr);
-            for (WasteBook w : allWasteBooks) {
+            for (Blacktiger w : allBlacktigers) {
                 if (!w.isType() && w.getTime() >= end && w.getTime() <= start) {
-                    showWasteBooks.add(w);
+                    showBlacktigers.add(w);
                     IN += w.getAmount();
                 }
             }
         }
-        selectedWasteBooks.setValue(showWasteBooks);
+        selectedBlacktiger.setValue(showBlacktigers);
     }
 
     private void setStartEnd(String timeStr) {

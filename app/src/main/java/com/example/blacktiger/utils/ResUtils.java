@@ -10,9 +10,7 @@ import androidx.annotation.IntegerRes;
 import androidx.annotation.StringRes;
 import androidx.appcompat.content.res.AppCompatResources;
 
-/**
- * @author abner-l. 2017-05-11
- */
+
 
 public class ResUtils {
 

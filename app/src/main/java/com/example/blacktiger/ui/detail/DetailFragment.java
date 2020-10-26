@@ -26,11 +26,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.example.blacktiger.data.Entity.Blacktiger;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.example.blacktiger.R;
-import com.example.blacktiger.adapters.WasteBookAdapter;
-import com.example.blacktiger.data.Entity.WasteBook;
+import com.example.blacktiger.adapters.BlacktigerAdapter;
 import com.example.blacktiger.ui.add.AddActivity;
 import com.example.blacktiger.ui.category.CategoryActivity;
 import com.example.blacktiger.utils.DateToLongUtils;
@@ -44,10 +44,10 @@ import java.util.List;
 
 public class DetailFragment extends Fragment {
     private RecyclerView recyclerView;
-    private WasteBookAdapter wasteBookAdapter;
-    private LiveData<List<WasteBook>> wasteBooks;
-    private MutableLiveData<List<WasteBook>> selectedWasteBooks = new MutableLiveData<>();
-    private List<WasteBook> allWasteBooks;
+    private BlacktigerAdapter blacktigerAdapter;
+    private LiveData<List<Blacktiger>> wasteBooks;
+    private MutableLiveData<List<Blacktiger>> selectedWasteBooks = new MutableLiveData<>();
+    private List<Blacktiger> allBlacktigers;
     private DetailViewModel detailViewModel;
     private boolean isAll = false, isOUT = false;
     private Double IN = 0.0, OUT = 0.0, TOTAL = 0.0;
@@ -101,14 +101,14 @@ public class DetailFragment extends Fragment {
             public boolean onQueryTextChange(String newText) {
                 final String pattern = newText.trim();
                 wasteBooks.removeObservers(getViewLifecycleOwner());
-                wasteBooks = detailViewModel.findWasteBookWithPattern(pattern);
-                wasteBooks.observe(getViewLifecycleOwner(), new Observer<List<WasteBook>>() {
+                wasteBooks = detailViewModel.findBlacktigerWithPattern(pattern);
+                wasteBooks.observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
                     @Override
-                    public void onChanged(List<WasteBook> wasteBooks) {
-                        int temp = wasteBookAdapter.getItemCount();
-                        wasteBookAdapter.setAllWasteBook(wasteBooks);
-                        if (temp != wasteBooks.size()) {
-                            wasteBookAdapter.notifyDataSetChanged();
+                    public void onChanged(List<Blacktiger> blacktigers) {
+                        int temp = blacktigerAdapter.getItemCount();
+                        blacktigerAdapter.setAllBlacktiger(blacktigers);
+                        if (temp != blacktigers.size()) {
+                            blacktigerAdapter.notifyDataSetChanged();
                         }
                     }
                 });
@@ -175,19 +175,19 @@ public class DetailFragment extends Fragment {
         detailViewModel = ViewModelProviders.of(getActivity()).get(DetailViewModel.class);
         recyclerView = requireActivity().findViewById(R.id.recyclerView_memo);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
-        wasteBookAdapter = new WasteBookAdapter(requireContext(), true);
-        recyclerView.setAdapter(wasteBookAdapter);
+        blacktigerAdapter = new BlacktigerAdapter(requireContext(), true);
+        recyclerView.setAdapter(blacktigerAdapter);
 
         //筛选，更新UI
-        selectedWasteBooks.observe(getViewLifecycleOwner(), new Observer<List<WasteBook>>() {
+        selectedWasteBooks.observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
             @Override
-            public void onChanged(List<WasteBook> wasteBooks) {
-//                for(WasteBook w:wasteBooks)
+            public void onChanged(List<Blacktiger> blacktigers) {
+//                for(Blacktiger w:blacktigers)
 //                    Log.e(TAG,"selected "+w.getTime());
-                int tmp = wasteBookAdapter.getItemCount();
-                wasteBookAdapter.setAllWasteBook(wasteBooks);
-                if (tmp != wasteBooks.size()) {
-                    wasteBookAdapter.notifyDataSetChanged();
+                int tmp = blacktigerAdapter.getItemCount();
+                blacktigerAdapter.setAllBlacktiger(blacktigers);
+                if (tmp != blacktigers.size()) {
+                    blacktigerAdapter.notifyDataSetChanged();
                 }
                 tv_IN.setText("+ " + IN);
                 tv_OUT.setText("- " + OUT);
@@ -199,20 +199,20 @@ public class DetailFragment extends Fragment {
         });
 
         //感知数据库更新，并更新UI
-        wasteBooks = detailViewModel.getAllWasteBookLive();
-        wasteBooks.observe(getViewLifecycleOwner(), new Observer<List<WasteBook>>() {
+        wasteBooks = detailViewModel.getAllBlacktigerLive();
+        wasteBooks.observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
             @Override
-            public void onChanged(List<WasteBook> wasteBooks) {
-                allWasteBooks = wasteBooks;
-                int tmp = wasteBookAdapter.getItemCount();
-                wasteBookAdapter.setAllWasteBook(wasteBooks);
-                if (tmp != wasteBooks.size())
-                    wasteBookAdapter.notifyDataSetChanged();
+            public void onChanged(List<Blacktiger> blacktigers) {
+                allBlacktigers = blacktigers;
+                int tmp = blacktigerAdapter.getItemCount();
+                blacktigerAdapter.setAllBlacktiger(blacktigers);
+                if (tmp != blacktigers.size())
+                    blacktigerAdapter.notifyDataSetChanged();
 
                 IN = 0.0;
                 OUT = 0.0;
                 TOTAL = 0.0;
-                for (WasteBook w : wasteBooks) {
+                for (Blacktiger w : blacktigers) {
                     if (w.isType()) OUT += w.getAmount();
                     else IN += w.getAmount();
                 }
@@ -236,12 +236,12 @@ public class DetailFragment extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                final WasteBook wasteBookToDelete = allWasteBooks.get(viewHolder.getAdapterPosition());
-                detailViewModel.deleteWasteBook(wasteBookToDelete);
+                final Blacktiger blacktigerToDelete = allBlacktigers.get(viewHolder.getAdapterPosition());
+                detailViewModel.deleteWasteBook(blacktigerToDelete);
                 Snackbar.make(requireActivity().findViewById(R.id.fragment_detail_CoordinatorLayout), "已删除一条记录", Snackbar.LENGTH_SHORT).setAction("撤销", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        detailViewModel.insertWasteBook(wasteBookToDelete);
+                        detailViewModel.insertWasteBook(blacktigerToDelete);
                     }
                 }).show();
             }
@@ -268,36 +268,36 @@ public class DetailFragment extends Fragment {
     }
 
     public void setSelectedWasteBook() {
-        List<WasteBook> wasteBookList = new ArrayList<>();
+        List<Blacktiger> blacktigerList = new ArrayList<>();
         IN = 0.0;
         OUT = 0.0;
         TOTAL = 0.0;
-        if (allWasteBooks != null) {
+        if (allBlacktigers != null) {
             if (isAll) {
-                for (WasteBook w : allWasteBooks) {
+                for (Blacktiger w : allBlacktigers) {
                     if (w.getTime() <= start && w.getTime() >= end) {
-                        wasteBookList.add(w);
+                        blacktigerList.add(w);
                         if (w.isType()) OUT += w.getAmount();
                         else IN += w.getAmount();
                     }
                 }
             } else if (isOUT) {
-                for (WasteBook w : allWasteBooks) {
+                for (Blacktiger w : allBlacktigers) {
                     if (w.isType() && w.getTime() <= start && w.getTime() >= end) {
-                        wasteBookList.add(w);
+                        blacktigerList.add(w);
                         OUT += w.getAmount();
                     }
                 }
             } else {
-                for (WasteBook w : allWasteBooks) {
+                for (Blacktiger w : allBlacktigers) {
                     if (!w.isType() && w.getTime() <= start && w.getTime() >= end) {
-                        wasteBookList.add(w);
+                        blacktigerList.add(w);
                         IN += w.getAmount();
                     }
                 }
             }
         }
-        selectedWasteBooks.setValue(wasteBookList);
+        selectedWasteBooks.setValue(blacktigerList);
     }
 
 
