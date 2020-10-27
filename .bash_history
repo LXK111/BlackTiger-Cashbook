@@ -66,3 +66,8 @@ git status
 git commit  -"2310"
 git commit  -m"2310"
 git push
+git init
+git status
+git add .
+git commit  -m"10.26"
+git push

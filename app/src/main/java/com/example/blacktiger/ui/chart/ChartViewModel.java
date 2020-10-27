@@ -21,6 +21,6 @@ public class ChartViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Blacktiger>> getAllBlacktigerLive() {
-        return blacktigerRepository.getAllWasteBooksLiveByAmount();
+        return blacktigerRepository.getAllBlacktigersLiveByAmount();
     }
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.blacktiger.data.Entity.Account;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccountRepository {
@@ -18,7 +19,7 @@ public class AccountRepository {
         AccountDatabase accountDatabase = AccountDatabase.getDatabase(context);
         accountDao = accountDatabase.getAccountDao();
         allAccountsLive = accountDao.getAllAccountsLive();
-        //allAccountsName = accountDao.getAllAccountsName();
+        //allAccountsName = accountDao.AllAccountsName();
     }
 
     public void insertAccount(Account... accounts) {
@@ -37,9 +38,9 @@ public class AccountRepository {
         return allAccountsLive;
     }
 
-    /**public List<String> getAllAccountsName() {
+    public List<String> getAllAccountsName() {
         return allAccountsName;
-    }**/
+    }
 
     private static class InsertAsyncTask extends AsyncTask<Account, Void, Void> {
         private AccountDao accountDao;

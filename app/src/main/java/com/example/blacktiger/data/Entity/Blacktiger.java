@@ -25,6 +25,9 @@ public class Blacktiger {
     //具体类型
     @ColumnInfo(name = "category")
     private String category;
+    //二级类型
+    @ColumnInfo(name = "category2")
+    private String category2;
     //账户
     @ColumnInfo(name = "account")
     private String account;
@@ -40,10 +43,11 @@ public class Blacktiger {
     //备注
     private String note;
 
-    public Blacktiger(boolean type, double amount, String category,String account,String members, String icon, long time, String note) {
+    public Blacktiger(boolean type, double amount, String category, String category2,String account,String members, String icon, long time, String note) {
         this.type = type;
         this.amount = amount;
         this.category = category;
+        this.category2 = category2;
         this.account = account;
         this.members = members;
         this.icon=icon;
@@ -92,6 +96,14 @@ public class Blacktiger {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getCategory2() {
+        return category2;
+    }
+
+    public void setCategory2(String category2) {
+        this.category2 = category2;
     }
 
     public String getIcon() {

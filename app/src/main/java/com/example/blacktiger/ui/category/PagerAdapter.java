@@ -20,10 +20,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
     private final Context mContext;
 
-//    public PagerAdapter(@NonNull FragmentManager fm, int behavior) {
-//        super(fm, behavior);
-//    }
-
     public PagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
@@ -31,8 +27,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a AddFragment (defined as a static inner class below).
         return CategoryFragment.newInstance(position + 1);
     }
 

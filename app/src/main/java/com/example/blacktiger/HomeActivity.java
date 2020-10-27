@@ -61,8 +61,6 @@ public class HomeActivity extends AppCompatActivity {
                 Log.e("MainActivity","onChanged");
                 if(categories.size()==0&&!isInitCategory) {
                     initCategory();
-                    initMembers();
-
                 }
             }
         });
@@ -90,7 +88,7 @@ public class HomeActivity extends AppCompatActivity {
     //初始化category数据库
     private void initCategory() {
         isInitCategory = true;
-        String[] categoryINName = {"搬砖","工资","奖金","卖房","股票","资金","黄金","兼职","其它"};
+        String[] categoryINName = {"搬砖","工资","奖金","还款","投资","兼职","其它"};
         String[] categoryOUTName = {"餐饮","购物","服饰","健身","交通","捐赠","社交","通信","房租","教育","医疗","生活","零食","旅行","水果","其它"};
         //支出
         for(int i=0;i<categoryOUTName.length;i++) {
@@ -114,17 +112,13 @@ public class HomeActivity extends AppCompatActivity {
     //初始化account数据库
     private void initAccount() {
         isInitAccount = true;
-        String[] accountName = {"平安银行","建设银行","工商银行","京东白条","蚂蚁花呗","饭卡"};
+        String[] accountName = {"平安银行","建设银行","工商银行","京东白条","蚂蚁花呗","校园卡"};
         for(int i=0;i<accountName.length;i++) {
             Account account = new Account();
             account.setName(accountName[i]);
             account.setOrder(i);
             accountViewModel.insertAccount(account);
         }
-    }
-    //初始化members
-    private void initMembers() {
-        String[] membersName = {"自己","家庭","孩子","父母","妻子","丈夫","其他"};
     }
 
 }

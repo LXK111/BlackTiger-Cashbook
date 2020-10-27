@@ -45,8 +45,8 @@ import java.util.List;
 public class DetailFragment extends Fragment {
     private RecyclerView recyclerView;
     private BlacktigerAdapter blacktigerAdapter;
-    private LiveData<List<Blacktiger>> wasteBooks;
-    private MutableLiveData<List<Blacktiger>> selectedWasteBooks = new MutableLiveData<>();
+    private LiveData<List<Blacktiger>> blacktigers;
+    private MutableLiveData<List<Blacktiger>> selectedBlacktigers = new MutableLiveData<>();
     private List<Blacktiger> allBlacktigers;
     private DetailViewModel detailViewModel;
     private boolean isAll = false, isOUT = false;
@@ -58,6 +58,7 @@ public class DetailFragment extends Fragment {
     //选择器
     private OptionsPickerView pvNoLinkOptions;
     private ArrayList<String> options1Items_type = new ArrayList<>();
+    //private ArrayList<String> options1Items_account = new ArrayList<>();
     private ArrayList<String> options1Items_year = new ArrayList<>();
     private ArrayList<String> options1Items_moonth = new ArrayList<>();
 
@@ -70,11 +71,6 @@ public class DetailFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-//            case R.id.add_new:
-//                Intent intent = new Intent(getActivity(), AddActivity.class);
-//                startActivity(intent);
-//                //Navigation.findNavController(getActivity().getCurrentFocus()).navigate(R.id.action_navigation_home_to_addFragment);
-//                break;
             case R.id.category_item:
                 Intent intent2 = new Intent(getActivity(), CategoryActivity.class);
                 startActivity(intent2);
@@ -100,9 +96,9 @@ public class DetailFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
                 final String pattern = newText.trim();
-                wasteBooks.removeObservers(getViewLifecycleOwner());
-                wasteBooks = detailViewModel.findBlacktigerWithPattern(pattern);
-                wasteBooks.observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
+                blacktigers.removeObservers(getViewLifecycleOwner());
+                blacktigers = detailViewModel.findBlacktigerWithPattern(pattern);
+                blacktigers.observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
                     @Override
                     public void onChanged(List<Blacktiger> blacktigers) {
                         int temp = blacktigerAdapter.getItemCount();
@@ -144,10 +140,6 @@ public class DetailFragment extends Fragment {
                 pvNoLinkOptions = new OptionsPickerBuilder(getContext(), new OnOptionsSelectListener() {
                     @Override
                     public void onOptionsSelect(int options1, int options2, int options3, View v) {
-//                        String str = "type:" + options1Items_type.get(options1)
-//                                + "\nyear:" + options1Items_year.get(options2)
-//                                + "\nmonth:" + options1Items_moonth.get(options3);
-//                        Toast.makeText(getContext(), str, Toast.LENGTH_SHORT).show();
                         String year = options1Items_year.get(options2);
                         String month = options1Items_moonth.get(options3);
                         String type = options1Items_type.get(options1);
@@ -179,11 +171,9 @@ public class DetailFragment extends Fragment {
         recyclerView.setAdapter(blacktigerAdapter);
 
         //筛选，更新UI
-        selectedWasteBooks.observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
+        selectedBlacktigers.observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
             @Override
             public void onChanged(List<Blacktiger> blacktigers) {
-//                for(Blacktiger w:blacktigers)
-//                    Log.e(TAG,"selected "+w.getTime());
                 int tmp = blacktigerAdapter.getItemCount();
                 blacktigerAdapter.setAllBlacktiger(blacktigers);
                 if (tmp != blacktigers.size()) {
@@ -199,8 +189,8 @@ public class DetailFragment extends Fragment {
         });
 
         //感知数据库更新，并更新UI
-        wasteBooks = detailViewModel.getAllBlacktigerLive();
-        wasteBooks.observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
+        blacktigers = detailViewModel.getAllBlacktigerLive();
+        blacktigers.observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
             @Override
             public void onChanged(List<Blacktiger> blacktigers) {
                 allBlacktigers = blacktigers;
@@ -219,9 +209,7 @@ public class DetailFragment extends Fragment {
                 tv_IN.setText("+ " + IN);
                 tv_OUT.setText("- " + OUT);
                 TOTAL = IN - OUT;
-//                if(TOTAL>0)
                 tv_TOTAL.setText("" + mAmountFormat.format(TOTAL));
-//                else tv_TOTAL.setText("无");
             }
         });
 
@@ -237,11 +225,11 @@ public class DetailFragment extends Fragment {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 final Blacktiger blacktigerToDelete = allBlacktigers.get(viewHolder.getAdapterPosition());
-                detailViewModel.deleteWasteBook(blacktigerToDelete);
+                detailViewModel.deleteBlacktiger(blacktigerToDelete);
                 Snackbar.make(requireActivity().findViewById(R.id.fragment_detail_CoordinatorLayout), "已删除一条记录", Snackbar.LENGTH_SHORT).setAction("撤销", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        detailViewModel.insertWasteBook(blacktigerToDelete);
+                        detailViewModel.insertBlacktiger(blacktigerToDelete);
                     }
                 }).show();
             }
@@ -267,7 +255,7 @@ public class DetailFragment extends Fragment {
         }
     }
 
-    public void setSelectedWasteBook() {
+    public void setSelectedBlacktiger() {
         List<Blacktiger> blacktigerList = new ArrayList<>();
         IN = 0.0;
         OUT = 0.0;
@@ -297,7 +285,7 @@ public class DetailFragment extends Fragment {
                 }
             }
         }
-        selectedWasteBooks.setValue(blacktigerList);
+        selectedBlacktigers.setValue(blacktigerList);
     }
 
 
@@ -319,7 +307,7 @@ public class DetailFragment extends Fragment {
                 break;
         }
         //开始筛选
-        setSelectedWasteBook();
+        setSelectedBlacktiger();
     }
 
     private void dealStartEnd(String type, String year, String month) {

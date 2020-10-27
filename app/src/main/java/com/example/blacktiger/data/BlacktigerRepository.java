@@ -16,7 +16,7 @@ public class BlacktigerRepository {
    public BlacktigerRepository(Context context){
         BlacktigerDatabase blacktigerDatabase = BlacktigerDatabase.getDatabase(context.getApplicationContext());
         blacktigerDao = blacktigerDatabase.getBlacktigerDao();
-        allBlacktigerLive = blacktigerDao.getAllWasteBookLive();
+        allBlacktigerLive = blacktigerDao.getAllBlacktigerLive();
     }
 
     public void insertBlacktiger(Blacktiger... blacktigers){
@@ -35,14 +35,14 @@ public class BlacktigerRepository {
 
 
 
-    public LiveData<List<Blacktiger>>findWasteBookWithPattern(String pattern){
+    public LiveData<List<Blacktiger>> findBlacktigerWithPattern(String pattern){
         return blacktigerDao.findWordsWithPattern("%" + pattern + "%");
     }
     public LiveData<List<Blacktiger>> getAllBlacktigerLive(){
         return allBlacktigerLive;
     }
-    public LiveData<List<Blacktiger>> getAllWasteBooksLiveByAmount(){
-        return blacktigerDao.getAllWasteBookLiveByAmount();
+    public LiveData<List<Blacktiger>> getAllBlacktigersLiveByAmount(){
+        return blacktigerDao.getAllBlacktigerLiveByAmount();
     }
 
     private static class InsertAsyncTask extends AsyncTask<Blacktiger,Void,Void> {
@@ -53,7 +53,7 @@ public class BlacktigerRepository {
 
         @Override
         protected Void doInBackground(Blacktiger... blacktigers) {
-            blacktigerDao.insertWasteBook(blacktigers);
+            blacktigerDao.insertBlacktiger(blacktigers);
             return null;
         }
     }
@@ -65,7 +65,7 @@ public class BlacktigerRepository {
 
         @Override
         protected Void doInBackground(Blacktiger... blacktigers) {
-            blacktigerDao.updateWasteBook(blacktigers);
+            blacktigerDao.updateBlacktiger(blacktigers);
             return null;
         }
     }
@@ -77,7 +77,7 @@ public class BlacktigerRepository {
 
         @Override
         protected Void doInBackground(Blacktiger... blacktigers) {
-            blacktigerDao.deleteWasteBook(blacktigers);
+            blacktigerDao.deleteBlacktiger(blacktigers);
             return null;
         }
     }
@@ -88,7 +88,7 @@ public class BlacktigerRepository {
         }
         @Override
         protected Void doInBackground(Void... voids) {
-            blacktigerDao.deleteAllWasteBooks();
+            blacktigerDao.deleteAllBlacktiger();
             return null;
         }
     }

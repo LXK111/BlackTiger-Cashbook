@@ -22,22 +22,18 @@ public class DetailViewModel extends AndroidViewModel {
         return blacktigerRepository.getAllBlacktigerLive();
     }
     public LiveData<List<Blacktiger>> findBlacktigerWithPattern(String pattern){
-        return blacktigerRepository.findWasteBookWithPattern(pattern);
+        return blacktigerRepository.findBlacktigerWithPattern(pattern);
     }
 
-    public void insertWasteBook(Blacktiger... blacktigers) {
+    public void insertBlacktiger(Blacktiger... blacktigers) {
         blacktigerRepository.insertBlacktiger(blacktigers);
     }
 
-    public void updateWasteBook(Blacktiger... blacktigers){
+    public void updateBlacktiger(Blacktiger... blacktigers){
         blacktigerRepository.updateBlacktiger(blacktigers);
     }
-    public void deleteWasteBook(Blacktiger... blacktigers){
+    public void deleteBlacktiger(Blacktiger... blacktigers){
         blacktigerRepository.deleteBlacktiger(blacktigers);
     }
-
-//    public LiveData<List<Blacktiger>> selectWasteBookByLongTime(long a,long b){
-//        return wasteBookRepository.selectWasteBookByLongTime(a,b);
-//    }
 
 }

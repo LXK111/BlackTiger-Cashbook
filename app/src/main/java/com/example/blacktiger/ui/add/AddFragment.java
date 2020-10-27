@@ -59,11 +59,6 @@ public class AddFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addViewModel = ViewModelProviders.of(this).get(AddViewModel.class);
-//        int index = 1;
-//        if (getArguments() != null) {
-//            index = getArguments().getInt(ARG_SECTION_NUMBER);
-//        }
-//        addViewModel.setIndex(index);
 
         allCategoriesLive = addViewModel.getAllCategoriesLive();
         allCategoriesLive.observe(this, new Observer<List<Category>>() {
@@ -77,8 +72,6 @@ public class AddFragment extends Fragment {
                         index = getArguments().getInt(ARG_SECTION_NUMBER);
                     }
                     addViewModel.setIndex(index);
-//                for(Category c:allCategories)
-//                    Log.e("xxxxAddFragment",c.getName()+" "+c.getIcon());
                 }
             }
         });
@@ -91,11 +84,11 @@ public class AddFragment extends Fragment {
             Bundle savedInstanceState) {
         Gson gson = new Gson();
         Intent intent = getActivity().getIntent();
-        String wasteBookJson = intent.getStringExtra(EditFragment.BLACKTIGER_EDIT);
-        if (wasteBookJson != null) {
-            blacktiger = gson.fromJson(wasteBookJson, Blacktiger.class);
-            Log.e("xxxx", wasteBookJson);
-            addViewModel.setWasteBook(blacktiger);
+        String blacktigerJson = intent.getStringExtra(EditFragment.BLACKTIGER_EDIT);
+        if (blacktigerJson != null) {
+            blacktiger = gson.fromJson(blacktigerJson, Blacktiger.class);
+            Log.e("xxxx", blacktigerJson);
+            addViewModel.setBlacktiger(blacktiger);
         }
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add, container, false);

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -24,8 +25,10 @@ import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.example.blacktiger.HomeActivity;
 import com.example.blacktiger.R;
+import com.example.blacktiger.data.AccountDao;
 import com.example.blacktiger.data.AccountRepository;
 import com.example.blacktiger.data.CategoryRepository;
+import com.example.blacktiger.data.Entity.Account;
 import com.example.blacktiger.data.Entity.Category;
 import com.example.blacktiger.data.Entity.Blacktiger;
 import com.example.blacktiger.data.BlacktigerRepository;
@@ -48,6 +51,7 @@ public class AddViewModel extends AndroidViewModel {
     private ObservableField<String> mDateText = new ObservableField<>();
     private ObservableField<String> mAmountText = new ObservableField<>();
     private ObservableField<String> mDesc = new ObservableField<>();
+    private ObservableField<String> mCate2 = new ObservableField<>();
     private ObservableField<String> mType = new ObservableField<>();
     private ObservableField<String> mAccount = new ObservableField<>();
     private ObservableField<String> mMembers = new ObservableField<>();
@@ -59,9 +63,10 @@ public class AddViewModel extends AndroidViewModel {
     private Blacktiger blacktigerEdit;
 
 
+
     private AlertDialog alertDialog1;
     private AccountRepository accountRepository;
-    List<String> AccountList = new ArrayList<>();
+    private List<Account> AccountList;
 
     public AddViewModel(@NonNull Application application) {
         super(application);
@@ -96,18 +101,26 @@ public class AddViewModel extends AndroidViewModel {
         }).show();
     }
 
+
     /**
      * 账户点击
      */
 
     public void onAccountClick(Activity activity) {
-        final String items[] = {"校园卡","平安银行","工商银行","蚂蚁花呗","信用卡"};
+    /**
+        ArrayList<String> result=new ArrayList<String>();
+        result = accountRepository.getAllAccountsName();
+    **/
+
+        ///final String items[] = result.toArray(new String[0]);
+        final String items[] = {"校园卡","平安银行","工商银行","蚂蚁花呗","信用卡","微信","支付宝"};
+        //final  String items[] = accountRepository.getAllAccountsName().toArray(new String[0]);
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(activity);
         alertBuilder.setTitle("选择账户");
         alertBuilder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                //Toast.makeText(activity, items[i], Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, items[i], Toast.LENGTH_SHORT).show();
                 String acc;
                 acc = items[i];
                 alertDialog1.dismiss();
@@ -116,6 +129,28 @@ public class AddViewModel extends AndroidViewModel {
         });
         alertDialog1 = alertBuilder.create();
         alertDialog1.show();
+    }
+
+    /**
+     * 二级类别点击
+     */
+
+    public void onCategory2Click(Activity activity) {
+
+        EditText input = new EditText(activity);
+        input.setText(getCate2().get());
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("添加二级类别").setView(input)
+                .setNegativeButton(R.string.cancel, null);
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                String tmp;
+                tmp = input.getText().toString().trim();
+                if (!tmp.isEmpty()) {
+                    setmCate2(tmp);
+                }
+            }
+        }).show();
     }
 
     /**
@@ -219,8 +254,8 @@ public class AddViewModel extends AndroidViewModel {
         if (getType().get() == null || getAmountText().get() == null || getAmountText().get().isEmpty() || iconId == null) {
             Toast.makeText(activity, "请输入完整的信息", Toast.LENGTH_SHORT).show();
         } else {
-            Boolean wasteBookType = true;
-            if (getText().getValue().contains("2")) wasteBookType = false;
+            Boolean blacktigerType = true;
+            if (getText().getValue().contains("2")) blacktigerType = false;
             Log.e("getDesc", getDesc().get());
             if (blacktigerEdit != null) {
                 blacktigerEdit.setAmount(Double.parseDouble(getAmountText().get()));
@@ -228,13 +263,14 @@ public class AddViewModel extends AndroidViewModel {
                 blacktigerEdit.setMembers(getMembers().get());
                 blacktigerEdit.setIcon(iconId);
                 blacktigerEdit.setCategory(getType().get());
+                blacktigerEdit.setCategory2(getCate2().get());
                 blacktigerEdit.setNote(getDesc().get());
                 blacktigerEdit.setTime(mDate);
-                blacktigerEdit.setType(wasteBookType);
+                blacktigerEdit.setType(blacktigerType);
                 updateDate(blacktigerEdit);
                 Toast.makeText(activity, "修改成功!", Toast.LENGTH_SHORT).show();
             } else {
-                Blacktiger blacktiger = new Blacktiger(wasteBookType, Double.parseDouble(getAmountText().get()), getType().get(),getAccount().get(),getMembers().get(), iconId, mDate, getDesc().get());
+                Blacktiger blacktiger = new Blacktiger(blacktigerType, Double.parseDouble(getAmountText().get()), getType().get(),getCate2().get(),getAccount().get(),getMembers().get(), iconId, mDate, getDesc().get());
                 saveData(blacktiger);
             }
             //activity.finish();
@@ -273,6 +309,10 @@ public class AddViewModel extends AndroidViewModel {
         this.mType.set(mType);
     }
 
+    public void setmCate2(String mCate2) {
+        this.mCate2.set(mCate2);
+    }
+
 
     public ObservableField<String> getAmountText() {
         return mAmountText;
@@ -286,6 +326,12 @@ public class AddViewModel extends AndroidViewModel {
         if (mDesc.get() == null)
             mDesc.set("");
         return mDesc;
+    }
+
+    public ObservableField<String> getCate2() {
+        if (mCate2.get() == null)
+            mCate2.set("");
+        return mCate2;
     }
 
     //pager data
@@ -320,7 +366,7 @@ public class AddViewModel extends AndroidViewModel {
         return blacktigerEdit;
     }
 
-    public void setWasteBook(Blacktiger blacktiger) {
+    public void setBlacktiger(Blacktiger blacktiger) {
         this.blacktigerEdit = blacktiger;
         this.setType(blacktiger.getCategory());
         this.setmAmountText(mAmountFormat.format(blacktiger.getAmount()));

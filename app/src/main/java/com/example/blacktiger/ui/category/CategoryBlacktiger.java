@@ -32,7 +32,7 @@ public class CategoryBlacktiger extends AppCompatActivity {
 
     // TODO: Rename and change types of parameters
     private String categoryBlacktiger;
-    private TextView tv_categoryWasteBook;
+    private TextView tv_categoryblacktiger;
     private TextView tv_category_mount_wb;
     private ImageView imageViewBack;
 
@@ -49,7 +49,7 @@ public class CategoryBlacktiger extends AppCompatActivity {
         if (getIntent() != null) {
             categoryBlacktiger = getIntent().getStringExtra(ARG_PARAM1);
         }
-        tv_categoryWasteBook = findViewById(R.id.textView_category_wb_total);
+        tv_categoryblacktiger = findViewById(R.id.textView_category_wb_total);
         tv_category_mount_wb = findViewById(R.id.textView_category_mount_wb);
         imageViewBack = findViewById(R.id.imageView_wb_back);
         imageViewBack.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +81,7 @@ public class CategoryBlacktiger extends AppCompatActivity {
                         }
                     }
                     tv_category_mount_wb.setText("总计：" + mount + "条账单");
-                    tv_categoryWasteBook.setText("共 " + mAmountFormat.format(total) + "元");
+                    tv_categoryblacktiger.setText("共 " + mAmountFormat.format(total) + "元");
                     blacktigerAdapter.setAllBlacktiger(selectedBlacktigers);
                     blacktigerAdapter.notifyDataSetChanged();
                 }

@@ -54,7 +54,7 @@ public class ChartFragment extends Fragment {
     private LineChart lineChart;
     private HashMap dataMap;
     private PieChart mPieChart;
-    private Button bt_OUT, bt_IN;
+    private Button bt_OUT, bt_IN , bt_CLY;
     private TextView select;
 
     private OptionsPickerView pvNoLinkOptions;
@@ -67,6 +67,7 @@ public class ChartFragment extends Fragment {
         chartViewModel = ViewModelProviders.of(this).get(ChartViewModel.class);
         bt_IN = root.findViewById(R.id.textView_in_chart);
         bt_OUT = root.findViewById(R.id.textView_out_chart);
+        bt_CLY = root.findViewById(R.id.textView_classify);
         bt_IN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +82,12 @@ public class ChartFragment extends Fragment {
                 selector(selectedStr);
             }
         });
+        bt_CLY.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         chartViewModel.getAllBlacktigerLive().observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
             @Override
             public void onChanged(List<Blacktiger> blacktigers) {
@@ -92,10 +99,6 @@ public class ChartFragment extends Fragment {
         selectedBlacktiger.observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
             @Override
             public void onChanged(List<Blacktiger> blacktigers) {
-//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//                for(Blacktiger w:blacktigers){
-//                    Log.e("xxxxxxxxxxx",w.getCategory()+sdf.format(new Date(w.getTime())));
-//                }
                 dataMap = new HashMap();
                 if (blacktigers.isEmpty()) {
                     PieChartUtils.getPitChart().setPieChart(mPieChart, dataMap, isOUT ? "支出" : "收入", true);

@@ -65,8 +65,8 @@ public class BlacktigerAdapter extends RecyclerView.Adapter<BlacktigerAdapter.My
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
                     Gson gson = new Gson();
-                    String wasteBookJson = gson.toJson(blacktiger, Blacktiger.class);
-                    bundle.putString(EditFragment.BLACKTIGER_EDIT, wasteBookJson);
+                    String blacktigerJson = gson.toJson(blacktiger, Blacktiger.class);
+                    bundle.putString(EditFragment.BLACKTIGER_EDIT, blacktigerJson);
                     Navigation.findNavController(v).navigate(R.id.action_navigation_detail_to_editFragment, bundle);
                 }
             });
@@ -88,25 +88,9 @@ public class BlacktigerAdapter extends RecyclerView.Adapter<BlacktigerAdapter.My
             tv_date=itemView.findViewById(R.id.blacktiger_date);
             tv_amount=itemView.findViewById(R.id.blacktiger_amount);
             imageView=itemView.findViewById(R.id.imageView_blacktiger_category);
-//            itemView.setOnClickListener(this);
         }
-
-//        @Override
-//        public void onClick(View v) {
-//            clickListener.onItemClick(getAdapterPosition(),v);
-//        }
-
     }
 
-//    public void setOnItemClickListener(WasteBookClickListener clickListener){
-//        this.clickListener=clickListener;
-//    }
-//
-//    //点击事件接口
-//    public interface WasteBookClickListener {
-//        void onItemClick(int position, View v);
-//        //void onItemLongClick(int position, View v);
-//    }
 
     public static int getDrawableId(String iconName){
         Field field = null;

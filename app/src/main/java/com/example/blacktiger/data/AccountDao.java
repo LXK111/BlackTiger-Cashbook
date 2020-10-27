@@ -9,6 +9,7 @@ import androidx.room.Update;
 
 import com.example.blacktiger.data.Entity.Account;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,6 @@ public interface AccountDao {
     @Query("SELECT * FROM ACCOUNT ORDER BY account_order")
     LiveData<List<Account>>getAllAccountsLive();
 
-    @Query("SELECT account_name FROM ACCOUNT ORDER BY account_order")
-    List<String> getAllAccountsName();
+    @Query("SELECT account_name FROM Account")
+    List<String> AllAccountsName();
 }

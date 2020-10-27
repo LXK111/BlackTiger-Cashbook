@@ -4,23 +4,55 @@
     <list default="true" id="79bb074e-e5e0-4e88-9e01-275e650998e1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.bash_history" beforeDir="false" afterPath="$PROJECT_DIR$/.bash_history" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_andrognito_patternlockview_patternlockview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_andrognito_patternlockview_patternlockview_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/BlackTiger.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/BlackTiger.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/HomeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/adapters/BlacktigerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/adapters/BlacktigerAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/adapters/CategoryDragTouchAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/adapters/CategoryDragTouchAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/data/AccountDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/data/AccountDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/data/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/data/AccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/data/BlacktigerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/data/BlacktigerDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/data/BlacktigerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/data/BlacktigerRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/data/Entity/Blacktiger.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/data/Entity/Blacktiger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/data/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/data/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/add/AddFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/add/AddFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/add/AddViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/add/AddViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/add/PagerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/add/PagerAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/category/CategoryBlacktiger.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/category/CategoryBlacktiger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/category/CategoryFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/category/CategoryFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/category/PagerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/category/PagerAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/chart/ChartFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/chart/ChartFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/chart/ChartViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/chart/ChartViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/detail/DetailFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/detail/DetailFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/detail/DetailViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/detail/DetailViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/detail/EditFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/detail/EditFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/blacktiger/ui/person/PersonFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_in_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_in_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_in_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_in_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_in_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_in_3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_in_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_in_4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_in_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_in_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_in_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_in_6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_in_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_in_7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_10.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_10.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_11.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_11.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_12.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_12.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_13.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_13.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_14.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_14.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_15.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_15.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_16.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_16.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_8.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_9.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_out_9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_setting.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_category_setting.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/blacktiger_card.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/blacktiger_card.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/category_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/category_item.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_add.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chart.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +60,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_5_API_30" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="VED0218602003524" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />

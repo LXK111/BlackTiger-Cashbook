@@ -59,7 +59,6 @@ public class CategoryDragTouchAdapter extends CategoryBaseAdapter<CategoryDragTo
     @Override
     public int getItemCount() {
         return categories == null ? 0 : categories.size();
-        //return mDataList == null ? 0 : mDataList.size();
     }
 
     @NonNull
@@ -72,7 +71,6 @@ public class CategoryDragTouchAdapter extends CategoryBaseAdapter<CategoryDragTo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //holder.setData(mDataList.get(position));
         holder.setData(context, categories.get(position));
     }
 
@@ -105,10 +103,6 @@ public class CategoryDragTouchAdapter extends CategoryBaseAdapter<CategoryDragTo
             this.tvTitle.setText(category.getName());
             this.imageView.setImageDrawable(context.getDrawable(res_ID));
         }
-
-//        public void setData(String title) {
-//            this.tvTitle.setText(title);
-//        }
 
 
         @Override

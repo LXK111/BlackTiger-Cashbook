@@ -103,11 +103,6 @@ public class CategoryFragment extends Fragment {
                                 Intent intent = new Intent(getContext(), CategoryBlacktiger.class);
                                 intent.putExtra(CategoryBlacktiger.ARG_PARAM1, temp);
                                 startActivity(intent);
-                                //Navigation.findNavController(get).navigate(R.id.action_categoryFragment_to_categoryWasteBookFragment, bundle);
-//                                getFragmentManager()
-//                                        .beginTransaction()
-//                                        //.addToBackStack(null)  //将当前fragment加入到返回栈中
-//                                        .replace(R.id.fragment_wb,  CategoryBlacktiger.newInstance(temp)).commit();
                             }
                         }
                     });
