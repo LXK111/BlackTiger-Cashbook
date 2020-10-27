@@ -29,7 +29,7 @@ public class EditFragment extends Fragment {
     public static final String BLACKTIGER_EDIT = "blacktiger_edit";
     private DetailViewModel detailViewModel;
     private Blacktiger blacktiger;
-    private TextView type, amount, info, date, category;
+    private TextView type, amount, info, date, category,account,members;
     private ImageView icon;
     private Button bt_edit, bt_delete;
     private DecimalFormat mAmountFormat = new DecimalFormat("0.00");
@@ -52,6 +52,8 @@ public class EditFragment extends Fragment {
         category = root.findViewById(R.id.textView_edit_category);
         bt_edit = root.findViewById(R.id.button_edit_edit);
         bt_delete = root.findViewById(R.id.button_edit_delete);
+        account = root.findViewById(R.id.textView_edit_account);
+        members = root.findViewById(R.id.textView_edit_members);
         return root;
     }
 
@@ -74,6 +76,8 @@ public class EditFragment extends Fragment {
             category.setText(blacktiger.getCategory());
             info.setText(blacktiger.getNote());
             icon.setImageDrawable(getContext().getDrawable(BlacktigerAdapter.getDrawableId(blacktiger.getIcon())));
+            account.setText(blacktiger.getAccount());
+            members.setText(blacktiger.getMembers());
         }
 
         bt_edit.setOnClickListener(new View.OnClickListener() {

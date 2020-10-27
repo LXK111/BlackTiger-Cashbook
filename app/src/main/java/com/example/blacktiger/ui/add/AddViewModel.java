@@ -6,7 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,8 +20,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.example.blacktiger.HomeActivity;
 import com.example.blacktiger.R;
+import com.example.blacktiger.data.AccountRepository;
 import com.example.blacktiger.data.CategoryRepository;
 import com.example.blacktiger.data.Entity.Category;
 import com.example.blacktiger.data.Entity.Blacktiger;
@@ -31,6 +36,7 @@ import com.example.blacktiger.utils.ResUtils;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -43,12 +49,19 @@ public class AddViewModel extends AndroidViewModel {
     private ObservableField<String> mAmountText = new ObservableField<>();
     private ObservableField<String> mDesc = new ObservableField<>();
     private ObservableField<String> mType = new ObservableField<>();
+    private ObservableField<String> mAccount = new ObservableField<>();
+    private ObservableField<String> mMembers = new ObservableField<>();
     private String iconId;
     private long mDate;
     private double mAmount;
     private BlacktigerRepository blacktigerRepository;
     private CategoryRepository categoryRepository;
     private Blacktiger blacktigerEdit;
+
+
+    private AlertDialog alertDialog1;
+    private AccountRepository accountRepository;
+    List<String> AccountList = new ArrayList<>();
 
     public AddViewModel(@NonNull Application application) {
         super(application);
@@ -58,6 +71,7 @@ public class AddViewModel extends AndroidViewModel {
         mDateText.set(mDateFormat.format(new Date(mDate)));
         blacktigerRepository = new BlacktigerRepository(application);
         categoryRepository = new CategoryRepository(application);
+        accountRepository = new AccountRepository(application);
     }
 
 
@@ -80,6 +94,49 @@ public class AddViewModel extends AndroidViewModel {
                 }
             }
         }).show();
+    }
+
+    /**
+     * 账户点击
+     */
+
+    public void onAccountClick(Activity activity) {
+        final String items[] = {"校园卡","平安银行","工商银行","蚂蚁花呗","信用卡"};
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(activity);
+        alertBuilder.setTitle("选择账户");
+        alertBuilder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //Toast.makeText(activity, items[i], Toast.LENGTH_SHORT).show();
+                String acc;
+                acc = items[i];
+                alertDialog1.dismiss();
+                setmAccount(acc);
+            }
+        });
+        alertDialog1 = alertBuilder.create();
+        alertDialog1.show();
+    }
+
+    /**
+     * 成员点击
+     */
+
+    public void onMembersClick(Activity activity) {
+        final String items[] = {"我","孩子","妻子","丈夫","父母","其他"};
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(activity);
+        alertBuilder.setTitle("选择成员");
+        alertBuilder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String mem;
+                mem = items[i];
+                alertDialog1.dismiss();
+                setmMembers(mem);
+            }
+        });
+        alertDialog1 = alertBuilder.create();
+        alertDialog1.show();
     }
 
     /**
@@ -167,6 +224,8 @@ public class AddViewModel extends AndroidViewModel {
             Log.e("getDesc", getDesc().get());
             if (blacktigerEdit != null) {
                 blacktigerEdit.setAmount(Double.parseDouble(getAmountText().get()));
+                blacktigerEdit.setAccount(getAccount().get());
+                blacktigerEdit.setMembers(getMembers().get());
                 blacktigerEdit.setIcon(iconId);
                 blacktigerEdit.setCategory(getType().get());
                 blacktigerEdit.setNote(getDesc().get());
@@ -175,7 +234,7 @@ public class AddViewModel extends AndroidViewModel {
                 updateDate(blacktigerEdit);
                 Toast.makeText(activity, "修改成功!", Toast.LENGTH_SHORT).show();
             } else {
-                Blacktiger blacktiger = new Blacktiger(wasteBookType, Double.parseDouble(getAmountText().get()), getType().get(), iconId, mDate, getDesc().get());
+                Blacktiger blacktiger = new Blacktiger(wasteBookType, Double.parseDouble(getAmountText().get()), getType().get(),getAccount().get(),getMembers().get(), iconId, mDate, getDesc().get());
                 saveData(blacktiger);
             }
             //activity.finish();
@@ -268,5 +327,29 @@ public class AddViewModel extends AndroidViewModel {
         this.setmDesc(blacktiger.getNote());
         this.setmDateText(DateToLongUtils.longToDateAdd(blacktiger.getTime()));
         this.setIconId(blacktiger.getIcon());
+        this.setmAccount(blacktiger.getAccount());
+        this.setmMembers(blacktiger.getMembers());
+    }
+
+
+
+    public ObservableField<String> getAccount() {
+        if (mAccount.get() == null)
+            mAccount.set("");
+        return mAccount;
+    }
+
+    public void setmAccount(String mAccount) {
+        this.mAccount.set(mAccount);
+    }
+
+    public  void setmMembers(String mMembers) {
+        this.mMembers.set(mMembers);
+    }
+
+    public ObservableField<String> getMembers() {
+        if (mMembers.get() == null)
+            mMembers.set("");
+        return mMembers;
     }
 }

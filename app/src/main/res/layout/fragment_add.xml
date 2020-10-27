@@ -141,7 +141,52 @@
                 android:layout_height="1px"
                 android:background="@color/divider"
                 app:layout_constraintTop_toTopOf="parent" />
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/divider"
+                app:layout_constraintTop_toTopOf="@+id/tvDesc" />
 
+
+            <TextView
+                android:id="@+id/account"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start|center_vertical"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:ellipsize="end"
+                android:gravity="start|center_vertical"
+                android:hint="账户"
+                android:maxLines="1"
+                android:minHeight="45dp"
+                android:paddingStart="@dimen/padding_normal"
+                android:paddingEnd="@dimen/padding_normal"
+                android:singleLine="true"
+                android:onClick="@{() -> vm.onAccountClick(activity)}"
+                android:text="@{vm.Account}"
+                android:textColor="?android:textColorSecondary"
+                android:textSize="@dimen/app_text_size_medium"
+                app:layout_constraintEnd_toStartOf="@id/tvDate"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/members"
+                android:layout_width="156dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:hint="成员"
+                android:minHeight="45dp"
+                android:onClick="@{() -> vm.onMembersClick(activity)}"
+                android:paddingStart="@dimen/padding_normal"
+                android:paddingEnd="@dimen/padding_normal"
+                android:text="@{vm.Members}"
+                android:textSize="@dimen/app_text_size_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
             <TextView
                 android:id="@+id/tvDesc"
@@ -155,16 +200,17 @@
                 android:hint="@string/tally_add_record_note"
                 android:maxLines="1"
                 android:minHeight="45dp"
+                android:onClick="@{() -> vm.onDescClick(activity)}"
                 android:paddingStart="@dimen/padding_normal"
                 android:paddingEnd="@dimen/padding_normal"
                 android:singleLine="true"
-                android:onClick="@{() -> vm.onDescClick(activity)}"
                 android:text="@{vm.Desc}"
                 android:textColor="?android:textColorSecondary"
                 android:textSize="@dimen/app_text_size_medium"
                 app:layout_constraintEnd_toStartOf="@id/tvDate"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/account" />
 
             <TextView
                 android:id="@+id/tvDate"
@@ -179,6 +225,7 @@
                 android:text="@{vm.dateText}"
                 android:textSize="@dimen/app_text_size_small"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/account"
                 tools:text="2019年10月24日 15:08" />
 
             <!-- 键盘 -->

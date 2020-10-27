@@ -92,7 +92,6 @@ public class AddFragment extends Fragment {
         Gson gson = new Gson();
         Intent intent = getActivity().getIntent();
         String wasteBookJson = intent.getStringExtra(EditFragment.BLACKTIGER_EDIT);
-//        String wasteBookJson = getArguments().getString(EditFragment.WASTEBOOK_EDIT);
         if (wasteBookJson != null) {
             blacktiger = gson.fromJson(wasteBookJson, Blacktiger.class);
             Log.e("xxxx", wasteBookJson);

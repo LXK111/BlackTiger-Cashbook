@@ -12,10 +12,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.blacktiger.data.Entity.Account;
 import com.example.blacktiger.data.Entity.Category;
 import com.example.blacktiger.data.Entity.User;
 import com.example.blacktiger.login.LoginViewModel;
 import com.example.blacktiger.login.SetCipherfornewActivity;
+import com.example.blacktiger.ui.account.AccountViewModel;
 import com.example.blacktiger.ui.category.CategoryViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -24,7 +26,9 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
     private CategoryViewModel categoryViewModel;
+    private AccountViewModel accountViewModel;
     private static boolean isInitCategory=false;
+    private static boolean isInitAccount=false;
 
 
     @Override
@@ -55,7 +59,22 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Category> categories) {
                 Log.e("MainActivity","onChanged");
-                if(categories.size()==0&&!isInitCategory)initCategory();
+                if(categories.size()==0&&!isInitCategory) {
+                    initCategory();
+                    initMembers();
+
+                }
+            }
+        });
+
+        accountViewModel = ViewModelProviders.of(this).get(AccountViewModel.class);
+        accountViewModel.getAllAccountsLive().observe(this, new Observer<List<Account>>() {
+            @Override
+            public void onChanged(List<Account> accounts) {
+                Log.e("MainActivity","onChanged");
+                if(accounts.size()==0&&!isInitAccount) {
+                    initAccount();
+                }
             }
         });
     }
@@ -70,9 +89,9 @@ public class HomeActivity extends AppCompatActivity {
 
     //初始化category数据库
     private void initCategory() {
-        isInitCategory=true;
-        String[] categoryINName={"搬砖","工资","奖金","卖房","股票","资金","黄金","兼职","其它"};
-        String[] categoryOUTName={"餐饮","购物","服饰","健身","交通","捐赠","社交","通信","房租","教育","医疗","生活","零食","旅行","水果","其它"};
+        isInitCategory = true;
+        String[] categoryINName = {"搬砖","工资","奖金","卖房","股票","资金","黄金","兼职","其它"};
+        String[] categoryOUTName = {"餐饮","购物","服饰","健身","交通","捐赠","社交","通信","房租","教育","医疗","生活","零食","旅行","水果","其它"};
         //支出
         for(int i=0;i<categoryOUTName.length;i++) {
             Category category = new Category();
@@ -92,4 +111,20 @@ public class HomeActivity extends AppCompatActivity {
             categoryViewModel.insertCategory(category);
         }
     }
+    //初始化account数据库
+    private void initAccount() {
+        isInitAccount = true;
+        String[] accountName = {"平安银行","建设银行","工商银行","京东白条","蚂蚁花呗","饭卡"};
+        for(int i=0;i<accountName.length;i++) {
+            Account account = new Account();
+            account.setName(accountName[i]);
+            account.setOrder(i);
+            accountViewModel.insertAccount(account);
+        }
+    }
+    //初始化members
+    private void initMembers() {
+        String[] membersName = {"自己","家庭","孩子","父母","妻子","丈夫","其他"};
+    }
+
 }

@@ -13,10 +13,10 @@ public class Blacktiger {
     @ColumnInfo(name = "id")
     private int id;
 
-    /** 用户 ID */
+    //用户ID
     @ColumnInfo(name = "user_id")
     private long accountId;
-
+    //款项金额
     @ColumnInfo(name = "amount")
     private double amount;
     //false:支出、true:收入
@@ -25,7 +25,13 @@ public class Blacktiger {
     //具体类型
     @ColumnInfo(name = "category")
     private String category;
-
+    //账户
+    @ColumnInfo(name = "account")
+    private String account;
+    //成员
+    @ColumnInfo(name = "members")
+    private String members;
+    //图片
     @ColumnInfo(name = "icon")
     private String icon;
     //时间
@@ -34,10 +40,12 @@ public class Blacktiger {
     //备注
     private String note;
 
-    public Blacktiger(boolean type, double amount, String category, String icon, long time, String note) {
+    public Blacktiger(boolean type, double amount, String category,String account,String members, String icon, long time, String note) {
         this.type = type;
-        this.amount=amount;
+        this.amount = amount;
         this.category = category;
+        this.account = account;
+        this.members = members;
         this.icon=icon;
         this.time = time;
         this.note = note;
@@ -108,5 +116,22 @@ public class Blacktiger {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getMembers() {
+        return members;
+    }
+
+    public void setMembers(String members) {
+        this.members = members;
     }
 }

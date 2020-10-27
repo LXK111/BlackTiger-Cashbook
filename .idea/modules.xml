@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/BlackTiger.iml" filepath="$PROJECT_DIR$/.idea/modules/BlackTiger.iml" group="BlackTiger" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libs/SPB_Data-libs.iml" filepath="$PROJECT_DIR$/.idea/modules/libs/SPB_Data-libs.iml" group="BlackTiger/libs" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="BlackTiger/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/libs/libs.iml" filepath="$PROJECT_DIR$/.idea/modules/libs/libs.iml" group="BlackTiger/libs" />
     </modules>
