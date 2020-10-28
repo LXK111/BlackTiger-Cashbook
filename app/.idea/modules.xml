@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/906985373/BlackTiger.iml" filepath="$PROJECT_DIR$/.idea/modules/906985373/BlackTiger.iml" group="BlackTiger" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app.iml" group="BlackTiger/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/24754624/libs.iml" filepath="$PROJECT_DIR$/.idea/modules/24754624/libs.iml" group="BlackTiger/libs" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1027560520/lib_fingerPrint.iml" filepath="$PROJECT_DIR$/.idea/modules/-1027560520/lib_fingerPrint.iml" group="BlackTiger/lib_fingerPrint" />
     </modules>
   </component>
 </project>

@@ -37,6 +37,7 @@ public class LoginPicActivity extends AppCompatActivity {
         tv_to_input_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                LoginPicActivity.this.finish();
                 Intent intent = new Intent(LoginPicActivity.this,LoginText2Activity.class);
                 startActivity(intent);
             }

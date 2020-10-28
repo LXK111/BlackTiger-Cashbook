@@ -67,7 +67,6 @@ public class LoginText2Activity extends AppCompatActivity {
                 spPsw=sp.getString("psw","");
                 if (TextUtils.isEmpty(psw)){
                     Toast.makeText(LoginText2Activity.this,"请输入密码",Toast.LENGTH_SHORT).show();
-                    return;
                 }
                 else if(!md5Psw.equals(spPsw)){
                     //密码不一致，登录失败
@@ -82,7 +81,6 @@ public class LoginText2Activity extends AppCompatActivity {
                     LoginText2Activity.this.finish();
                     //跳转到欢迎界面，登录成功的状态传递到WelcomeActivity中
                     startActivity(new Intent(LoginText2Activity.this, HomeActivity.class));
-                    return;
                 }
             }
         });
@@ -106,14 +104,12 @@ public class LoginText2Activity extends AppCompatActivity {
             mManager.authenticate(new BiometricPromptManager.OnBiometricIdentifyCallback() {
                 @Override
                 public void onUsePassword() {
-                    Toast.makeText(LoginText2Activity.this, "指纹验证失败次数过多，稍后重试！", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginText2Activity.this, "指纹验证失败次数过多，稍后重试！", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onSucceeded() {
-                    Toast.makeText(LoginText2Activity.this, "指纹登录已开启！", Toast.LENGTH_LONG).show();
-                    //销毁登录页面
-                    LoginText2Activity.this.finish();
+                    Toast.makeText(LoginText2Activity.this, "指纹登录成功！", Toast.LENGTH_SHORT).show();
                     //跳转到欢迎界面，登录成功的状态传递到WelcomeActivity中
                     startActivity(new Intent(LoginText2Activity.this, HomeActivity.class));
                 }

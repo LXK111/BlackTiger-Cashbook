@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.andrognito.patternlockview.PatternLockView;
 import com.andrognito.patternlockview.listener.PatternLockViewListener;
 import com.andrognito.patternlockview.utils.PatternLockUtils;
+import com.example.blacktiger.HomeActivity;
 import com.example.blacktiger.R;
 
 import java.util.List;
@@ -60,7 +61,8 @@ public class SetPicCipherfornewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Paper.book().write(save_pattern_key,final_pattern);
                 Toast.makeText(SetPicCipherfornewActivity.this,"确认成功",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(SetPicCipherfornewActivity.this,SetPicCipherAgainActivity.class);
+
+                Intent intent = new Intent(SetPicCipherfornewActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,6 +1,5 @@
 package com.example.blacktiger.ui.chart;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,17 +25,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.example.blacktiger.R;
+import com.example.blacktiger.adapters.BlacktigerAdapter;
 import com.example.blacktiger.data.Entity.Blacktiger;
+import com.example.blacktiger.utils.DateToLongUtils;
+import com.example.blacktiger.utils.PieChartUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.example.blacktiger.R;
-import com.example.blacktiger.adapters.BlacktigerAdapter;
-import com.example.blacktiger.utils.DateToLongUtils;
-import com.example.blacktiger.utils.PieChartUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -158,7 +157,7 @@ public class ChartFragment extends Fragment {
                     PieChartUtils.getPitChart().setPieChart(mPieChart, dataMap, isOUT ? "支出" : "收入", true);
                 }
                 if (blacktigers != null && !blacktigers.isEmpty()) {
-                    List<Blacktiger> wasteBooksTemp = new ArrayList<>();
+                    List<Blacktiger> blacktigerTemp = new ArrayList<>();
                     String categoriesTmp = "";
                     double[] cWeight = new double[blacktigers.size()];
                     String[] categories = new String[blacktigers.size()];
@@ -172,7 +171,7 @@ public class ChartFragment extends Fragment {
                             String cTmp = w.getCategory();
                             if(get_scs_user.equals(w.getMembers())) {
                                 if (!categoriesTmp.contains(cTmp)) {
-                                    wasteBooksTemp.add(w);
+                                    blacktigerTemp.add(w);
                                     categoriesTmp += cTmp + " ";
                                     categories[i] = cTmp;
                                     cWeight[i] += w.getAmount();
@@ -189,7 +188,7 @@ public class ChartFragment extends Fragment {
                             String cTmp = w.getCategory();
                             if(get_scs_account.equals(w.getAccount())) {
                                 if (!categoriesTmp.contains(cTmp)) {
-                                    wasteBooksTemp.add(w);
+                                    blacktigerTemp.add(w);
                                     categoriesTmp += cTmp + " ";
                                     categories[i] = cTmp;
                                     cWeight[i] += w.getAmount();
@@ -205,7 +204,7 @@ public class ChartFragment extends Fragment {
                         }else{
                             String cTmp = w.getCategory();
                             if (!categoriesTmp.contains(cTmp)) {
-                                wasteBooksTemp.add(w);
+                                blacktigerTemp.add(w);
                                 categoriesTmp += cTmp + " ";
                                 categories[i] = cTmp;
                                 cWeight[i] += w.getAmount();
@@ -225,7 +224,7 @@ public class ChartFragment extends Fragment {
                     }
                     PieChartUtils.getPitChart().setPieChart(mPieChart, dataMap, isOUT ? "支出" : "收入", true);
 
-                    blacktigerAdapter.setAllBlacktiger(wasteBooksTemp);
+                    blacktigerAdapter.setAllBlacktiger(blacktigerTemp);
                     blacktigerAdapter.notifyDataSetChanged();
                 }
             }

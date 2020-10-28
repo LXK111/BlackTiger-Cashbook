@@ -30,12 +30,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //若图形密码非空，表示是老用户
                 if(save_pattern != null && !save_pattern.equals("null")){
+                    MainActivity.this.finish();
                     Intent intent = new Intent(MainActivity.this, LogoActivity.class);
                     startActivity(intent);
 
                 }
                 //表示是新用户，跳入初次设置密码界面
                 else{
+                    MainActivity.this.finish();
                     Intent intent = new Intent(MainActivity.this, SetCipherfornewActivity.class);
                     startActivity(intent);
                 }

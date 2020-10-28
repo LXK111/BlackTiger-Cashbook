@@ -77,3 +77,10 @@ git add .
 git status  -m"功能10.28"
 git commit  -m"功能10.28"
 git push
+git add .
+git commit -m"fin"
+git push
+git init
+git status
+git push
+git push
