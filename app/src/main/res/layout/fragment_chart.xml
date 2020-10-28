@@ -37,29 +37,46 @@
             android:layout_height="50dp"
             android:layout_margin="10dp">
 
+
             <Button
-                android:id="@+id/textView_classify"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/textView_scs_account"
+                android:layout_width="65dp"
+                android:layout_height="50dp"
                 android:background="@drawable/bt_bg_selector"
                 android:clickable="true"
-                android:text="类别"
+                android:text="账户"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.923"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/textView_scs_user"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_bg_selector"
+                android:clickable="true"
+                android:text="成员"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.084"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
                 android:id="@+id/textView_out_chart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
                 android:background="@drawable/bt_bg_selector"
                 android:clickable="true"
                 android:text="支出"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline6"
-                app:layout_constraintHorizontal_bias="0.379"
+                app:layout_constraintHorizontal_bias="0.895"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
@@ -73,16 +90,17 @@
 
             <Button
                 android:id="@+id/textView_in_chart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
                 android:background="@drawable/bt_bg_selector"
                 android:clickable="true"
                 android:text="收入"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.583"
+                app:layout_constraintHorizontal_bias="0.095"
                 app:layout_constraintStart_toStartOf="@+id/guideline6"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView
             android:layout_width="match_parent"

@@ -1,14 +1,20 @@
 package com.example.blacktiger.ui.chart;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.databinding.ObservableField;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -37,6 +43,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class ChartFragment extends Fragment {
 
@@ -54,20 +61,27 @@ public class ChartFragment extends Fragment {
     private LineChart lineChart;
     private HashMap dataMap;
     private PieChart mPieChart;
-    private Button bt_OUT, bt_IN , bt_CLY;
+    private Button bt_OUT, bt_IN , bt_SCS_User , bt_SCS_Account;
     private TextView select;
+    public String get_scs_user = "全部";
+    public String get_scs_account = "全部";
+
+    private ObservableField<String> mMembers = new ObservableField<>();
+
 
     private OptionsPickerView pvNoLinkOptions;
     private ArrayList<String> options1Items_type = new ArrayList<>(), options1Items_INOUT = new ArrayList<>();
     private ArrayList<ArrayList<String>> options1Items_date = new ArrayList<>();
 
+    private static final String TAG = "ChartFragment";
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_chart, container, false);
         chartViewModel = ViewModelProviders.of(this).get(ChartViewModel.class);
         bt_IN = root.findViewById(R.id.textView_in_chart);
         bt_OUT = root.findViewById(R.id.textView_out_chart);
-        bt_CLY = root.findViewById(R.id.textView_classify);
+        bt_SCS_User = root.findViewById(R.id.textView_scs_user);
+        bt_SCS_Account = root.findViewById(R.id.textView_scs_account);
         bt_IN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,12 +96,51 @@ public class ChartFragment extends Fragment {
                 selector(selectedStr);
             }
         });
-        bt_CLY.setOnClickListener(new View.OnClickListener() {
+
+        bt_SCS_User.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String[] item = new String[]{"全部","我","孩子","妻子","丈夫","父母","其他"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+                builder.setTitle("按成员统计");
+                builder.setItems(item, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(Objects.requireNonNull(getActivity()), item[which], Toast.LENGTH_SHORT).show();
+                        get_scs_user = new String(item[which]);
+                        Log.d(TAG, get_scs_user);
 
+                        get_scs_account = new String("全部");
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+                selector(selectedStr);
             }
         });
+
+        bt_SCS_Account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String[] item = new String[]{"全部","校园卡","平安银行","工商银行","蚂蚁花呗","信用卡","微信","支付宝"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+                builder.setTitle("按成员统计");
+                builder.setItems(item, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(Objects.requireNonNull(getActivity()), item[which], Toast.LENGTH_SHORT).show();
+                        get_scs_account = new String(item[which]);
+                        get_scs_user = new String("全部");
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+                selector(selectedStr);
+            }
+        });
+
+
+
         chartViewModel.getAllBlacktigerLive().observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
             @Override
             public void onChanged(List<Blacktiger> blacktigers) {
@@ -99,6 +152,7 @@ public class ChartFragment extends Fragment {
         selectedBlacktiger.observe(getViewLifecycleOwner(), new Observer<List<Blacktiger>>() {
             @Override
             public void onChanged(List<Blacktiger> blacktigers) {
+
                 dataMap = new HashMap();
                 if (blacktigers.isEmpty()) {
                     PieChartUtils.getPitChart().setPieChart(mPieChart, dataMap, isOUT ? "支出" : "收入", true);
@@ -110,19 +164,59 @@ public class ChartFragment extends Fragment {
                     String[] categories = new String[blacktigers.size()];
                     int i = 0;
                     for (Blacktiger w : blacktigers) {
-                        String cTmp = w.getCategory();
-                        if (!categoriesTmp.contains(cTmp)) {
-                            wasteBooksTemp.add(w);
-                            categoriesTmp += cTmp + " ";
-                            categories[i] = cTmp;
-                            cWeight[i] += w.getAmount();
-                            i++;
-                        } else {
-                            for (int j = 0; j < i; j++)
-                                if (categories[j].equals(cTmp)) {
-                                    cWeight[j] += w.getAmount();
-                                    continue;
+                        Log.d(TAG, "onChanged: ggg");
+                        Log.d(TAG, get_scs_user);
+                        Log.d(TAG, "onChanged: ggg");
+                        if(!get_scs_user.equals("全部")) {
+                            Log.d(TAG, get_scs_user);
+                            String cTmp = w.getCategory();
+                            if(get_scs_user.equals(w.getMembers())) {
+                                if (!categoriesTmp.contains(cTmp)) {
+                                    wasteBooksTemp.add(w);
+                                    categoriesTmp += cTmp + " ";
+                                    categories[i] = cTmp;
+                                    cWeight[i] += w.getAmount();
+                                    i++;
+                                } else {
+                                    for (int j = 0; j < i; j++)
+                                        if (categories[j].equals(cTmp)) {
+                                            cWeight[j] += w.getAmount();
+                                            continue;
+                                        }
                                 }
+                            }
+                        }else if(!get_scs_account.equals("全部")){
+                            String cTmp = w.getCategory();
+                            if(get_scs_account.equals(w.getAccount())) {
+                                if (!categoriesTmp.contains(cTmp)) {
+                                    wasteBooksTemp.add(w);
+                                    categoriesTmp += cTmp + " ";
+                                    categories[i] = cTmp;
+                                    cWeight[i] += w.getAmount();
+                                    i++;
+                                } else {
+                                    for (int j = 0; j < i; j++)
+                                        if (categories[j].equals(cTmp)) {
+                                            cWeight[j] += w.getAmount();
+                                            continue;
+                                        }
+                                }
+                            }
+                        }else{
+                            String cTmp = w.getCategory();
+                            if (!categoriesTmp.contains(cTmp)) {
+                                wasteBooksTemp.add(w);
+                                categoriesTmp += cTmp + " ";
+                                categories[i] = cTmp;
+                                cWeight[i] += w.getAmount();
+                                i++;
+                            } else {
+                                for (int j = 0; j < i; j++)
+                                    if (categories[j].equals(cTmp)) {
+                                        cWeight[j] += w.getAmount();
+                                        continue;
+                                    }
+                            }
                         }
                     }
                     double sum = isOUT ? OUT : IN;
@@ -155,6 +249,9 @@ public class ChartFragment extends Fragment {
         });
         return root;
     }
+
+
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -222,22 +319,71 @@ public class ChartFragment extends Fragment {
         List<Blacktiger> showBlacktigers = new ArrayList<>();
         IN = 0.0;
         OUT = 0.0;
-        //支出
-        if (isOUT) {
-            setStartEnd(timeStr);
-            if (allBlacktigers != null)
+        if(!get_scs_user.contains("全部")){
+            //支出
+            if (isOUT) {
+                setStartEnd(timeStr);
+                if (allBlacktigers != null)
+                    for (Blacktiger w : allBlacktigers) {
+                        if(get_scs_user.equals(w.getMembers())){
+                            if (w.isType() && w.getTime() >= end && w.getTime() <= start) {
+                                showBlacktigers.add(w);
+                                OUT += w.getAmount();
+                            }
+                        }
+                    }
+            } else if (!isOUT) {
+                setStartEnd(timeStr);
                 for (Blacktiger w : allBlacktigers) {
-                    if (w.isType() && w.getTime() >= end && w.getTime() <= start) {
-                        showBlacktigers.add(w);
-                        OUT += w.getAmount();
+                    if(get_scs_user.equals(w.getMembers())){
+                        if (!w.isType() && w.getTime() >= end && w.getTime() <= start) {
+                            showBlacktigers.add(w);
+                            IN += w.getAmount();
+                        }
                     }
                 }
-        } else if (!isOUT) {
-            setStartEnd(timeStr);
-            for (Blacktiger w : allBlacktigers) {
-                if (!w.isType() && w.getTime() >= end && w.getTime() <= start) {
-                    showBlacktigers.add(w);
-                    IN += w.getAmount();
+            }
+        }else if(!get_scs_account.contains("全部")){
+            //支出
+            if (isOUT) {
+                setStartEnd(timeStr);
+                if (allBlacktigers != null)
+                    for (Blacktiger w : allBlacktigers) {
+                        if(get_scs_account.equals(w.getAccount())){
+                            if (w.isType() && w.getTime() >= end && w.getTime() <= start) {
+                                showBlacktigers.add(w);
+                                OUT += w.getAmount();
+                            }
+                        }
+                    }
+            } else if (!isOUT) {
+                setStartEnd(timeStr);
+                for (Blacktiger w : allBlacktigers) {
+                    if(get_scs_account.equals(w.getAccount())){
+                        if (!w.isType() && w.getTime() >= end && w.getTime() <= start) {
+                            showBlacktigers.add(w);
+                            IN += w.getAmount();
+                        }
+                    }
+                }
+            }
+        }else{
+            if (isOUT) {
+                setStartEnd(timeStr);
+                if (allBlacktigers != null)
+                    for (Blacktiger w : allBlacktigers) {
+                        if (w.isType() && w.getTime() >= end && w.getTime() <= start) {
+                            showBlacktigers.add(w);
+                            OUT += w.getAmount();
+                        }
+                    }
+            } else if (!isOUT) {
+                setStartEnd(timeStr);
+                for (Blacktiger w : allBlacktigers) {
+                    if (!w.isType() && w.getTime() >= end && w.getTime() <= start) {
+                        showBlacktigers.add(w);
+                        IN += w.getAmount();
+                    }
                 }
             }
         }
@@ -287,4 +433,6 @@ public class ChartFragment extends Fragment {
             start = DateToLongUtils.dateToLong(yearTemp + "-12-31 23:59:59");
         }
     }
+
 }
+

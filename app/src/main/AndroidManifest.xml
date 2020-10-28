@@ -18,15 +18,23 @@
 
         android:theme="@style/AppTheme">
         <activity android:name=".login.UserActivity"></activity>
-        <activity android:name=".login.LoginPicActivity" />
-        <activity android:name=".login.LoginText2Activity" />
-        <activity android:name=".login.LoginTextActivity" />
-        <activity android:name=".login.LogoActivity" />
+        <activity android:name=".login.LoginPicActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".login.LoginText2Activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".login.LoginTextActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".login.LogoActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".login.WelcomeActivity" />
-        <activity android:name=".login.SetPicCipherAgainActivity" />
-        <activity android:name=".login.SetPicCipherfornewActivity" />
-        <activity android:name=".login.SetCipherfornewActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".login.SetPicCipherAgainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".login.SetPicCipherfornewActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".login.SetCipherfornewActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,9 +54,9 @@
             android:windowSoftInputMode="adjustNothing">
         </activity>
         <activity android:name="com.example.blacktiger.login.RegisterActivity"
-            android:theme="@style/Translucent" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name="com.example.blacktiger.login.LoginActivity"
-            android:theme="@style/NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
         <activity android:name="com.example.blacktiger.ui.category.CategoryBlacktiger"
             android:theme="@style/NoActionBar">

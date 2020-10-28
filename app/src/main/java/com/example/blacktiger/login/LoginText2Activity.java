@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.blacktiger.HomeActivity;
 import com.example.blacktiger.R;
+import com.tutu.lib_fingerprint.BiometricPromptManager;
 
 public class LoginText2Activity extends AppCompatActivity {
 
@@ -21,6 +22,8 @@ public class LoginText2Activity extends AppCompatActivity {
     private EditText et_psw;//编辑框
     private TextView tv_makesure;
     private TextView tv_to_input_pic;
+    private TextView finger;
+    private BiometricPromptManager mManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,13 @@ public class LoginText2Activity extends AppCompatActivity {
         tv_makesure=findViewById(R.id.tv_makesure_input);
         et_psw=findViewById(R.id.et_input_psw);
         tv_to_input_pic=findViewById(R.id.tv_to_input_pic);
+        finger = findViewById(R.id.finger);
+        finger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoFingerPrint();
+            }
+        });
 
         //跳转到图案密码输入界面，跳转按钮点击事件
         tv_to_input_pic.setOnClickListener(new View.OnClickListener() {
@@ -88,5 +98,41 @@ public class LoginText2Activity extends AppCompatActivity {
         editor.putBoolean("isLogin",status);
         //提交修改
         editor.commit();
+    }
+
+    private void gotoFingerPrint() {
+        mManager = BiometricPromptManager.from(this);
+        if (mManager.isBiometricPromptEnable()) {
+            mManager.authenticate(new BiometricPromptManager.OnBiometricIdentifyCallback() {
+                @Override
+                public void onUsePassword() {
+                    Toast.makeText(LoginText2Activity.this, "指纹验证失败次数过多，稍后重试！", Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onSucceeded() {
+                    Toast.makeText(LoginText2Activity.this, "指纹登录已开启！", Toast.LENGTH_LONG).show();
+                    //销毁登录页面
+                    LoginText2Activity.this.finish();
+                    //跳转到欢迎界面，登录成功的状态传递到WelcomeActivity中
+                    startActivity(new Intent(LoginText2Activity.this, HomeActivity.class));
+                }
+
+                @Override
+                public void onFailed() {
+
+                }
+
+                @Override
+                public void onError(int code, String reason) {
+
+                }
+
+                @Override
+                public void onCancel() {
+
+                }
+            });
+        }
     }
 }
