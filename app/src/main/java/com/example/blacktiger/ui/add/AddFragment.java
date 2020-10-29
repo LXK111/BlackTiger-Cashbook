@@ -31,9 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A placeholder fragment containing a simple view.
- */
+
 public class AddFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "AddFragment_number";

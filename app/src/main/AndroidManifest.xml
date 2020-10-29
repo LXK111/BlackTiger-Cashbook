@@ -53,11 +53,6 @@
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustNothing">
         </activity>
-        <activity android:name="com.example.blacktiger.login.RegisterActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name="com.example.blacktiger.login.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
         <activity android:name="com.example.blacktiger.ui.category.CategoryBlacktiger"
             android:theme="@style/NoActionBar">
         </activity>

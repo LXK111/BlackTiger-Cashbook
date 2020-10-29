@@ -84,3 +84,6 @@ git init
 git status
 git push
 git push
+git add .
+git commit -m"改bug"
+git push

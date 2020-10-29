@@ -10,10 +10,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.blacktiger.R;
 
-/**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
+
 public class PagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
