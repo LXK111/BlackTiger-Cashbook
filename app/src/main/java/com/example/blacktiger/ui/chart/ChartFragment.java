@@ -47,9 +47,10 @@ import java.util.Objects;
 public class ChartFragment extends Fragment {
 
     private boolean isOUT = true;
-    private Double IN = 0.0, OUT = 0.0, TOTAL = 0.0;
+    private Double IN = 0.0, OUT = 0.0, TOTAL = 0.0, account_in = 0.0, account_out = 0.0, account_total = 0.0;
     private long start, end;
     private String selectedStr = "近1个月";
+    private String account_name = "全部";
     private List<Blacktiger> allBlacktigers;
     private MutableLiveData<List<Blacktiger>> selectedBlacktiger = new MutableLiveData<>();
 
@@ -64,6 +65,8 @@ public class ChartFragment extends Fragment {
     private TextView select;
     public String get_scs_user = "全部";
     public String get_scs_account = "全部";
+
+    private TextView Acc_name, Acc_total;
 
     private ObservableField<String> mMembers = new ObservableField<>();
 
@@ -81,6 +84,10 @@ public class ChartFragment extends Fragment {
         bt_OUT = root.findViewById(R.id.textView_out_chart);
         bt_SCS_User = root.findViewById(R.id.textView_scs_user);
         bt_SCS_Account = root.findViewById(R.id.textView_scs_account);
+
+        Acc_name = root.findViewById(R.id.account1);
+        Acc_total = root.findViewById(R.id.account3);
+
         bt_IN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,6 +160,8 @@ public class ChartFragment extends Fragment {
             public void onChanged(List<Blacktiger> blacktigers) {
 
                 dataMap = new HashMap();
+                account_in = 0.0;
+                account_out = 0.0;
                 if (blacktigers.isEmpty()) {
                     PieChartUtils.getPitChart().setPieChart(mPieChart, dataMap, isOUT ? "支出" : "收入", true);
                 }
@@ -223,6 +232,38 @@ public class ChartFragment extends Fragment {
                         dataMap.put(categories[j], cWeight[j] / sum * 100);
                     }
                     PieChartUtils.getPitChart().setPieChart(mPieChart, dataMap, isOUT ? "支出" : "收入", true);
+
+                    Acc_name.setText(get_scs_account);
+
+                    if (get_scs_account.equals("全部")) {
+                        for (Blacktiger w: allBlacktigers) {
+                            if (w.isType()) {
+                                account_in = account_in + w.getAmount();
+                            }
+                            else {
+                                account_out = account_out + w.getAmount();
+                            }
+                        }
+                    }
+                    else {
+                        for (Blacktiger w: allBlacktigers) {
+                            if (w.getAccount().equals(get_scs_account)) {
+                                if (w.isType()) {
+                                    account_in = account_in + w.getAmount();
+                                }
+                                else {
+                                    account_out = account_out + w.getAmount();
+                                }
+                            }
+                        }
+                    }
+                    account_total = account_out - account_in;
+                    if (account_total < 0) {
+                        Acc_total.setText("" + account_total);
+                    }
+                    else {
+                        Acc_total.setText("" + account_total);
+                    }
 
                     blacktigerAdapter.setAllBlacktiger(blacktigerTemp);
                     blacktigerAdapter.notifyDataSetChanged();

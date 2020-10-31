@@ -87,3 +87,9 @@ git push
 git add .
 git commit -m"改bug"
 git push
+git init
+git status
+git add .
+git commit  -m"10.29"
+git push
+git pull origin master

@@ -23,21 +23,39 @@
         android:layout_height="250dp"
         android:orientation="vertical"
         >
-    <!--设置-->
-    <Button
-        android:id="@+id/btn_setting"
+    <!--添加账户-->
+    <EditText
+        android:id="@+id/btn_setting_account"
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:layout_weight="1"
         android:background="@color/white"
         android:layout_marginTop="1dp"
-        android:text="设置"
+        android:hint="添加账户（输入并点击）"
         android:textSize="20sp"
         android:gravity="left"
         android:paddingLeft="10dp"
         android:drawableLeft="@drawable/icon_setting"
         android:drawablePadding="5dp"
+        android:clickable="true"
         />
+        <EditText
+            android:id="@+id/btn_setting_member"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:layout_marginTop="1dp"
+            android:hint="添加成员（输入并点击）"
+            android:textSize="20sp"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            android:drawableLeft="@drawable/icon_setting"
+            android:drawablePadding="5dp"
+            android:clickable="true"
+            />
+
+
     <!--修改密码-->
     <Button
         android:id="@+id/btn_change_text_cipher"

@@ -2,14 +2,13 @@ package com.example.blacktiger.ui.add;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,17 +20,14 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
-import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
-import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.example.blacktiger.HomeActivity;
 import com.example.blacktiger.R;
-import com.example.blacktiger.data.AccountDao;
 import com.example.blacktiger.data.AccountRepository;
+import com.example.blacktiger.data.BlacktigerRepository;
 import com.example.blacktiger.data.CategoryRepository;
 import com.example.blacktiger.data.Entity.Account;
-import com.example.blacktiger.data.Entity.Category;
 import com.example.blacktiger.data.Entity.Blacktiger;
-import com.example.blacktiger.data.BlacktigerRepository;
+import com.example.blacktiger.data.Entity.Category;
 import com.example.blacktiger.utils.CommonUtils;
 import com.example.blacktiger.utils.DatePickUtils;
 import com.example.blacktiger.utils.DateToLongUtils;
@@ -39,7 +35,6 @@ import com.example.blacktiger.utils.ResUtils;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -62,7 +57,7 @@ public class AddViewModel extends AndroidViewModel {
     private CategoryRepository categoryRepository;
     private Blacktiger blacktigerEdit;
 
-
+    public SharedPreferences Setting = getApplication().getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
 
     private AlertDialog alertDialog1;
     private AccountRepository accountRepository;
@@ -113,8 +108,10 @@ public class AddViewModel extends AndroidViewModel {
     **/
 
         ///final String items[] = result.toArray(new String[0]);
-        final String items[] = {"校园卡","平安银行","工商银行","蚂蚁花呗","信用卡","微信","支付宝"};
+        //final String items[] = {"校园卡","平安银行","工商银行","蚂蚁花呗","信用卡","微信","支付宝"};
         //final  String items[] = accountRepository.getAllAccountsName().toArray(new String[0]);
+
+        final String items[] = Setting.getString("account", String.valueOf(0)).split("\\s+");
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(activity);
         alertBuilder.setTitle("选择账户");
         alertBuilder.setItems(items, new DialogInterface.OnClickListener() {
@@ -158,7 +155,9 @@ public class AddViewModel extends AndroidViewModel {
      */
 
     public void onMembersClick(Activity activity) {
-        final String items[] = {"我","孩子","妻子","丈夫","父母","其他"};
+        //final String items[] = {"我","孩子","妻子","丈夫","父母","其他"};
+        final String items[] = Setting.getString("member", String.valueOf(0)).split("\\s+");
+
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(activity);
         alertBuilder.setTitle("选择成员");
         alertBuilder.setItems(items, new DialogInterface.OnClickListener() {

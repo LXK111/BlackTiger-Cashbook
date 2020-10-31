@@ -32,6 +32,14 @@ public class SetCipherfornewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_cipherfornew);
+
+        SharedPreferences Setting = getSharedPreferences("loginInfo",MODE_PRIVATE);
+        SharedPreferences.Editor editor = Setting.edit();
+        editor.putString("account","校园卡 平安银行 工商银行 蚂蚁花呗 信用卡 微信 支付宝");
+        editor.putString("member","我 孩子 妻子 丈夫 父母 其他");
+        editor.commit();
+
+
         //设置此界面为竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
